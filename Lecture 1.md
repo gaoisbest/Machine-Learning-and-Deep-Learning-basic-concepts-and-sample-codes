@@ -19,6 +19,23 @@
   - Convolutional Neural Network.
 
 # Codes
+Vectorized codes are perfered since they are efficient.
+
+## Python List iteration
+```
+# list iteration
+a = ['1', '2', '3', '4', '5']
+for idx, ele in enumerate(a):
+    print 'index:%d, value:%s' % (idx, ele)
+```
+# find the most frequent numbers in an array
+```
+# see https://stackoverflow.com/questions/6252280/find-the-most-frequent-number-in-a-numpy-vector
+a = np.array([1, 1, 3, 7, 7, 7])
+np.bincount(a) # array([0, 2, 0, 1, 0, 0, 0, 3], dtype=int64), 3 means 7-index occurs three times 
+np.argmax(np.bincount(a)) # 7
+```
+
 ## L1 and L2 distance between two vectors
 ```
 a = np.array([1,2,3,4])
@@ -48,9 +65,48 @@ from scipy.spatial.distance import cdist
 res_scipy = cdist(test, train, metric='euclidean')
 ```
 
-## Bias trick
-## Image preprocessing
+## Image preprocessing and bias trick
+```
+# first: compute the image mean based on the training data
+mean_image = np.mean(X_train, axis=0) # X_train shape is N (Number of samples) * D (Dimension)
+# subtract the mean
+X_train -= mean_image
+# third: append the bias dimension of ones (i.e. bias trick)
+X_train = np.hstack([X_train, np.ones((X_train.shape[0], 1))])
+```
+
+## Multi-class SVM loss for one training example (x, y)
+```
+def L_i_vectorized(x, y, W):
+  delta = 1.0
+  scores = W.dot(x)
+  margins = np.maximum(0, scores - scores[y] + delta)
+  margins[y] = 0 # the loss exclude y-th true class itself
+  loss_i = np.sum(margins)
+  return loss_i
+```
 
 # Part solution of Assignment 1 
 
-Reference: http://cs231n.github.io/classification/
+## knn.ipynb
+
+kNN classifier includes two steps: 
+First, compute the distances between test images and all train examples. Then, find the k nearest examples and vote for the predicted label.
+```
+# In k_nearest_neighbor.py
+# compute_distances_two_loops computes the distance matrix one element at a time
+for i in xrange(num_test):
+    for j in xrange(num_train):        
+        dists[i, j] = np.linalg.norm(X[i,:] - self.X_train[j,:])\
+        # or
+        # dists[i,j] = np.sqrt(np.sum(np.square(X[i,:] - self.X_train[j,:])))
+
+# predict_labels
+for i in xrange(num_test):
+    closest_y = self.y_train[np.argsort(dists[i,])[0:k]]
+    y_pred[i] = np.argmax(np.bincount(closest_y))
+```
+
+References: 
+http://cs231n.github.io/classification/
+http://cs231n.github.io/linear-classify/

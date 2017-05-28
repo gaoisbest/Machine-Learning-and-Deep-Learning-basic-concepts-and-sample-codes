@@ -12,7 +12,9 @@
     - Treat it as a **optimization** problem and the goal is **minimizing the loss**.
     - **f=WX+b**. **W** is **weights** and **b** is **bias** (affect the final score but donot interact with the input **X**. Without **b**, the classifier line will be forced to **cross the origin**.). **Bias trick**: combine **W** and **b** into one matrix and extend **x** with constant one.
     - Data preprocessing: zero meaning centering and unit variance.
-    - Loss function: multiclass SVM loss and cross-entropy loss.
+    - Loss function
+      - Multiclass SVM loss: expect the correct class score is larger than the incorrect class score by the margin 1.
+      - Cross-entropy loss.
   - Convolutional Neural Network.
 
 # Codes

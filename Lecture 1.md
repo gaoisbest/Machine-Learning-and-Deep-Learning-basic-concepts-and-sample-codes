@@ -3,13 +3,16 @@
 - In computer view, an image is viewed as a **3-D array**. For a three color channels (RGB) image with 20 pixels wide, 30 pixels tall, it has a total of 20 * 30 * 3 = 1800 integers. Each integer ranges between 0 (black) and 255 (white). The image can be flatten out to be one dimensional array. For example, a specific 32x32 colour image of the [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset can be flatten out to a 1x3072 numpy array of uint8s. The first 1024 entries contain the red channel values (row-major order, which means the first 32 entries are the red channel values of the *first row* of the image), the next 1024 the green, and the final 1024 the blue. see [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) for more detailed information.
 - Machine learning approach is the **data-driven** approach. And all the available data can be split into training set, validation set and test set. Validation set (Cross validation) is used to select hyper-parameters, and test set is only used to report the accuracy **at a single time** in the end. Note that, when all the hyper-parameters are determined by cross validation, the final model is re-trained on (training set + validation set).
 - Three approaches for image classification
-  - k-Nearest neighbor classifier, based on the pixel distance (L1 or L2). 
+  - k-Nearest Neighbor classifier, based on the pixel distance (L1 or L2). 
     - `k` and distance measure (L1 or L2) are determined by cross validation. 
     - The drawbacks of kNN are (1) storing all training set and (2) expensive predicting. 
-    - Since totally different pictures may have the same distance, the performance of kNN is not good. [FLANN](http://www.cs.ubc.ca/research/flann/) provides the implementaion. 
+    - Since totally different images may have the same distance, the performance of kNN is not good. [FLANN](http://www.cs.ubc.ca/research/flann/) provides the implementaion of approximate nearest neighbor. 
   - Linear classifier.
     - **Score function** maps raw data to class scores; **loss function** quantifies the agreement between the predicted class scores and the ground truth labels.
     - Treat it as a **optimization** problem and the goal is **minimizing the loss**.
+    - **f=WX+b**. **W** is **weights** and **b** is **bias** (affect the final score but donot interact with the input **X**). **Bias trick**: combine **W** and **b** into one matrix and extend **x** with constant one.
+    - Data preprocessing: zero meaning centering and unit variance.
+    - Loss function: multiclass SVM loss and cross-entropy loss.
   - Convolutional Neural Network.
 
 # Codes
@@ -41,6 +44,10 @@ res = np.sqrt(-2*train_test + train_square + test_square) # (8L, 5L)
 from scipy.spatial.distance import cdist
 res_scipy = cdist(test, train, metric='euclidean')
 ```
+
+## Bias trick
+## Image preprocessing
+
 # Part solution of Assignment 1 
 
 Reference: http://cs231n.github.io/classification/

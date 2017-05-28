@@ -10,7 +10,7 @@
   - Linear classifier.
     - **Score function** maps raw data to class scores (the score is weighted sum of all pixels); **loss function** quantifies the agreement between the predicted class scores and the ground truth labels.
     - Treat it as a **optimization** problem and the goal is **minimizing the loss**.
-    - **f=WX+b**. **W** is **weights** and **b** is **bias** (affect the final score but donot interact with the input **X**). **Bias trick**: combine **W** and **b** into one matrix and extend **x** with constant one.
+    - **f=WX+b**. **W** is **weights** and **b** is **bias** (affect the final score but donot interact with the input **X**. Without **b**, the classifier line will be forced to **cross the origin**.). **Bias trick**: combine **W** and **b** into one matrix and extend **x** with constant one.
     - Data preprocessing: zero meaning centering and unit variance.
     - Loss function: multiclass SVM loss and cross-entropy loss.
   - Convolutional Neural Network.

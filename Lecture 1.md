@@ -8,7 +8,7 @@
     - The drawbacks of kNN are (1) storing all training set and (2) expensive predicting. 
     - Since totally different images may have the same distance, the performance of kNN is not good. [FLANN](http://www.cs.ubc.ca/research/flann/) provides the implementaion of approximate nearest neighbor. 
   - Linear classifier.
-    - **Score function** maps raw data to class scores; **loss function** quantifies the agreement between the predicted class scores and the ground truth labels.
+    - **Score function** maps raw data to class scores (the score is weighted sum of all pixels); **loss function** quantifies the agreement between the predicted class scores and the ground truth labels.
     - Treat it as a **optimization** problem and the goal is **minimizing the loss**.
     - **f=WX+b**. **W** is **weights** and **b** is **bias** (affect the final score but donot interact with the input **X**). **Bias trick**: combine **W** and **b** into one matrix and extend **x** with constant one.
     - Data preprocessing: zero meaning centering and unit variance.

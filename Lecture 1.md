@@ -13,8 +13,9 @@
     - **f=WX+b**. **W** is **weights** and **b** is **bias** (affect the final score but donot interact with the input **X**. Without **b**, the classifier line will be forced to **cross the origin**.). **Bias trick**: combine **W** and **b** into one matrix and extend **x** with constant one.
     - Data preprocessing: zero meaning centering and unit variance.
     - Loss function
-      - Multiclass SVM loss: expect the correct class score is larger than the incorrect class score by the margin 1.
+      - Multiclass SVM loss: expect the correct class score is at least larger than the incorrect class score by the margin `1`.
       - Cross-entropy loss.
+      - Final loss: multiclass SVM / cross-entropy + 
   - Convolutional Neural Network.
 
 # Codes

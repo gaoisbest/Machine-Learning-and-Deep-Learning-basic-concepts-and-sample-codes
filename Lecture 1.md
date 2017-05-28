@@ -28,7 +28,7 @@ a = ['1', '2', '3', '4', '5']
 for idx, ele in enumerate(a):
     print 'index:%d, value:%s' % (idx, ele)
 ```
-# find the most frequent numbers in an array
+## find the most frequent numbers in an array
 ```
 # see https://stackoverflow.com/questions/6252280/find-the-most-frequent-number-in-a-numpy-vector
 a = np.array([1, 1, 3, 7, 7, 7])
@@ -108,5 +108,6 @@ for i in xrange(num_test):
 ```
 
 References: 
-http://cs231n.github.io/classification/
+http://cs231n.github.io/classification/  
+
 http://cs231n.github.io/linear-classify/

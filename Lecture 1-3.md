@@ -16,9 +16,12 @@
     - Loss function
       - Multiclass SVM loss: expect the correct class score is at least larger than the incorrect class score by the margin `1`.
       - Cross-entropy loss: unnormalized log probabilities -> softmax (normalized class probabilties) -> minimizing the negative log likelihood of correct class [MLE] (aka minimizing the cross entropy [KL divergence] between the predicted class score and the true label)
-      - Final loss: multiclass SVM / cross-entropy + regularization loss. **With regularization loss, the final loss cannot be equal to zero**.
+      - Final loss: multiclass SVM / cross-entropy + **regularization loss**. **With regularization loss, the final loss cannot be equal to zero**. With L2 regularization, the weights tends to evenly distributed.
   - Convolutional Neural Network.
-
+- Optimization
+  - Gradient check: always use the **analytic gradient**, check the results using **numerical gradient**.
+  - Mini-batch gradient descent: common mini-batch sizes are 32, 64 or 128.
+  - **Learning rate** is crucial parameter.
 # Codes
 Vectorized codes are perfered since they are efficient.
 

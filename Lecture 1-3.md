@@ -15,8 +15,8 @@
     - Data preprocessing: zero meaning centering and unit variance.
     - Loss function
       - Multiclass SVM loss: expect the correct class score is at least larger than the incorrect class score by the margin `1`.
-      - Cross-entropy loss: unnormalized log probabilities -> softmax (normalized class probabilties) -> minimizing the negative log likelihood of correct class [MLE] (aka minimizing the cross entropy [KL divergence] between the predicted class score and the true label)
-      - Final loss: multiclass SVM / cross-entropy + regularization loss. **With regularization loss, the final loss cannot be equal to zero**.
+      - Cross-entropy loss: unnormalized log probabilities -> softmax (normalized class probabilties) -> minimizing the negative log likelihood of correct class [MLE] (aka minimizing the cross entropy [KL divergence] between the predicted class score and the true label)
+      - Final loss: multiclass SVM / cross-entropy + regularization loss. **With regularization loss, the final loss cannot be equal to zero**.
   - Convolutional Neural Network.
 
 # Codes

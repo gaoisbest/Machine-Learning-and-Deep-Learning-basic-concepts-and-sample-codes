@@ -2,6 +2,7 @@
 - **Image classification** is a fundamental task for other Computer Vision problems (such as object detection, segmentation or image captioning).
 - In computer view, an image is viewed as a **3-D array**. For a three color channels (RGB) image with 20 pixels wide, 30 pixels tall, it has a total of 20 * 30 * 3 = 1800 integers. Each integer ranges between 0 (black) and 255 (white). The image can be flatten out to be one dimensional array. For example, a specific 32x32 colour image of the [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset can be flatten out to a 1x3072 numpy array of uint8s. The first 1024 entries contain the red channel values (row-major order, which means the first 32 entries are the red channel values of the *first row* of the image), the next 1024 the green, and the final 1024 the blue. see [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) for more detailed information.
 - Machine learning approach is the **data-driven** approach. And all the available data can be split into training set, validation set and test set. Validation set (Cross validation) is used to select hyper-parameters, and test set is only used to report the accuracy **at a single time** in the end. Note that, when all the hyper-parameters are determined by cross validation, the final model is re-trained on (training set + validation set).
+- **Softmax function** maps a vector of arbitrary real-valued scores to a vector of values between zero and one that sum to one. Then, **cross entropy** can be applied. 
 - Three approaches for image classification
   - k-Nearest Neighbor classifier, based on the pixel distance (L1 or L2). 
     - `k` and distance measure (L1 or L2) are determined by cross validation. 
@@ -14,8 +15,8 @@
     - Data preprocessing: zero meaning centering and unit variance.
     - Loss function
       - Multiclass SVM loss: expect the correct class score is at least larger than the incorrect class score by the margin `1`.
-      - Cross-entropy loss.
-      - Final loss: multiclass SVM / cross-entropy + regularization loss
+      - Cross-entropy loss: unnormalized log probabilities -> softmax (normalized class probabilties) -> minimizing the negative log likelihood of correct class [MLE] (aka minimizing the cross entropy [KL divergence] between the predicted class score and the true label)
+      - Final loss: multiclass SVM / cross-entropy + regularization loss. **With regularization loss, the final loss cannot be equal to zero**.
   - Convolutional Neural Network.
 
 # Codes
@@ -84,6 +85,16 @@ def L_i_vectorized(x, y, W):
   margins[y] = 0 # the loss exclude y-th true class itself
   loss_i = np.sum(margins)
   return loss_i
+```
+
+## Numerical stability for softmax function
+```
+f = np.array([123, 456, 789])
+p = np.exp(f) / np.sum(np.exp(f)) # Numeric potential blowup
+
+# logC = -max(f)
+f -= np.max(f) # f becomes [-666, -333, 0]
+p = np.exp(f) / np.sum(np.exp(f))
 ```
 
 # Part solution of Assignment 1 

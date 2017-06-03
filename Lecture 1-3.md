@@ -19,8 +19,10 @@
       - Final loss: multiclass SVM / cross-entropy + **regularization loss**. **With regularization loss, the final loss cannot be equal to zero**. With L2 regularization, the weights tends to evenly distributed.
   - Convolutional Neural Network.
 - Optimization
-  - Gradient check: always use the **analytic gradient**, check the results using **numerical gradient**.
-  - Mini-batch gradient descent: common mini-batch sizes are 32, 64 or 128.
+  - **Derivative** indicates the rate of change of a function with respect to that variable surrounding an infinitesimally small region `h` near a particular point. When `h` is very small, the function is well-approximated by a straight line, and the derivative is its slope.
+  - **Gradient** is the vector of partial derivatives for each dimension.
+  - **Gradient check**: always use the **analytic gradient**, check the results using **numerical gradient**.
+  - Mini-batch gradient descent: common mini-batch sizes are 32, 64, 128 or 256 (many vectorized operation implementations work faster when their inputs are sized in powers of 2), usually based on memory constraints (if any).
   - **Learning rate** is crucial parameter.
 # Codes
 Vectorized codes are perfered since they are efficient.

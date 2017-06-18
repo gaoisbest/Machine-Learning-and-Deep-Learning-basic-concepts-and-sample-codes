@@ -18,24 +18,15 @@
   - **Multiply gate**: local gradients are switched input values, times the above gradient. If one of the inputs is very small(`W`) and the other is very big(`X`), then the multiply gate will assign a relatively huge gradient to the small input (`W`) and a tiny gradient to the large input (`X`). During gradient descent, the gradient on the weights will be very large, then it should be come with lower learning rates. Therefore, **data preprocessing** is very necessary!
   - **Gradients add up at forks**: use `+=` instead of `=` to accumulate the gradient.
  
-- Jacobian matrix
+- Jacobian matrix and (Derivative of vector and matrix)[http://cs231n.stanford.edu/vecDerivs.pdf]
 
 - Data preprocessing
-k components, 
-To decide how to set k, we will usually look at the ‘percentage of variance retained’ for different values of k. More generally, let λ1,λ2,…,λn be the eigenvalues of Σ (sorted in decreasing order), so that λj is the eigenvalue corresponding to the eigenvector uj. Then if we retain 2 principal components, the percentage of variance retained is given by: (λ1 + λ2)/ (λ1 + λ2 + … + λn)
-
-The goal of whitening is (i) the features are less correlated with each other, and (ii) the features all have the same variance.
-
-Reference:
-http://ufldl.stanford.edu/tutorial/unsupervised/PCAWhitening/
+  - PCA. 
+     - If `Σ` is the covariance matrix of data `X`, PCA amounts to performing an eigendecomposition `Σ=UΛU^T`, where `U` is an orthogonal rotation matrix (`U^T = U^(-1)`) composed of eigenvectors of `Σ`, and `Λ` is a diagonal matrix with eigenvalues on the diagonal. Matrix `U^T` gives a rotation needed to de-correlate the data (i.e. maps the original features to principal components).
+     - Depends on the ‘percentage of variance retained’ for setting top k component. Let `λ1,λ2,…,λn` be the eigenvalues of covariance matrix `Σ` (sorted in decreasing order), so that `λj` is the eigenvalue corresponding to the eigenvector `uj`. Then if we retain 2 principal components, the percentage of variance retained is given by: `(λ1 + λ2)/ (λ1 + λ2 + … + λn)`
+  - Whitening. The goal of whitening is (i) the features are less correlated with each other, and (ii) the features all have the same variance. After the rotation `U^(T)(x−μ)` each component will have variance given by a corresponding eigenvalue. To make variances equal to 1, divide by the square root of Λ. Finally, the whitening transformation is `Λ^(−1/2)U^(T)(x−μ)`. This data now has covariance equal to the identity matrix I.Reference: http://ufldl.stanford.edu/tutorial/unsupervised/PCAWhitening/
 
 
-If Σ is the covariance matrix of data X, PCA amounts to performing an eigendecomposition Σ=UΛU^T, where U is an orthogonal rotation matrix (U^T = U^(-1)) composed of eigenvectors of Σ, and Λ is a diagonal matrix with eigenvalues on the diagonal. Matrix U^T gives a rotation needed to de-correlate the data (i.e. maps the original features to principal components). The corvariance matrix of Matrix U^T is **diagonal** matrix.
-
-Third, after the rotation each component will have variance given by a corresponding eigenvalue. So to make variances equal to 1, you need to divide by the square root of Λ.
-
-All together, the whitening transformation is Λ^(−1/2)U^(T)(x−μ). This data now has covariance equal to the identity matrix I.
--
 
 # Codes
 - Gradient check

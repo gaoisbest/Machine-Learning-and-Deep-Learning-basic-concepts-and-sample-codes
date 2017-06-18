@@ -2,6 +2,8 @@
 CNN for text classification
 http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/
 
+http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/
+
 vocab_size – The size of our vocabulary. This is needed to define the size of our embedding layer, which will have shape [vocabulary_size, embedding_size].
 
 we enable dropout only during training. We disable it when evaluating the model (more on that later).

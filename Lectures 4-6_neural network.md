@@ -1,5 +1,5 @@
 # Basic concepts
-- Neural network organized as a DAG. **Fully-connected layer** is the layer which neurons between two adjacent layers are fully pairwise connected, but neurons within a single layer share no connections. In practice, we should use as big of a neural network as your computational budget allows, and use other regularization techniques to control overfitting.
+- Neural network organized as a DAG. **Fully-connected layer** is the layer which neurons between two adjacent layers are fully pairwise connected, but neurons within a single layer share no connections. In practice, we should use as big of a neural network as the computational budget allows, and use other regularization techniques to control overfitting.
 
 - **Universal approximator**: a single hidden layer neural network with the activation function can approximate any continuous function.
 

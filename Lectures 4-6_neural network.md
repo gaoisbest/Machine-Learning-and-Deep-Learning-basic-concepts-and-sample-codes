@@ -3,7 +3,7 @@
 
 - **Universal approximator**: a single hidden layer neural network with the activation function can approximate any continuous function.
 
-- A **single neuron** can be used to implement a **binary classifier** (e.g. logistic regression or binary SVM classifiers). From this view, logistic regression or SVMs are simply a special case of single-layer neural networks. 
+- A **single neuron** can be used to implement a **binary classifier** (e.g. logistic regression or binary SVM classifiers). From this view, logistic regression or SVMs are simply a special case of single-layer neural networks. The role of the **neuron** is **weighted sum** of its input + bias as `z`, then putting `z` to **activation function** to generate `a`.
 
 - **Score function**, **loss function (data loss + regularization loss)** and **optimization**. Compute the gradient of a loss function with respect to its weights.
 
@@ -27,14 +27,20 @@
   - **Learning rate** is crucial parameter.
  
 - Activation function (i.e., non-linearity)
+  - Linear
+    - Disadvantages: gradients are constant `c` and independent on the input `X`. Multiple stacked layers with linear activation function has the same role as single layer. 
+    - Range is (-inf, inf)
   - Sigmoid
     - Disadvantages: [vanishing gradient](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) (saturate regime kill the gradients); non-zero centered outputs ([zig-zagging](https://zhuanlan.zhihu.com/p/25110450) gradient descent); exponential operations is expensive
+    - Range is (0, 1)
   - Tanh
-    - Disadvantages: vanishing gradient (saturate regime kill the gradients); non-zero centered outputs (zig-zagging gradient descent); exponential operations is expensive
+    - Disadvantages: vanishing gradient (saturate regime kill the gradients); non-zero centered outputs (zig-zagging gradient descent); exponential operations is expensive. The gradient of **tanh** is stronger than **sigmoid**. 
+    - Range is (-1, 1)
   - [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))
-    - Advantages: fast convergence rate; cheaper operation; 
+    - Advantages: fast convergence rate; cheaper operation; **sparsity** property
     - Disadvantages: [**Dying ReLU**](https://datascience.stackexchange.com/questions/5706/what-is-the-dying-relu-problem-in-neural-networks): the neuron state that neuron become inactive for all inputs and **a closed ReLU cannot update its input parameters**. In this state, no gradients flow backward through the neuron. This problem typically arises when the learning rate is set too high. It may be mitigated by using Leaky ReLUs instead.
     - A smooth approximation to ReLU is the **softplus** function `f(x)=ln(1 + e^x)`. The derivative of softplus is the **logistic function**.
+    - Range is [0, inf)
   - Noisy ReLU
     - `f(x)=max(0,x+Y)`
   - Leaky ReLU

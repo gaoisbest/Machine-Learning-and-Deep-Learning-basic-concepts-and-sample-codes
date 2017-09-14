@@ -40,6 +40,7 @@
     - Advantages: fast convergence rate; cheaper operation; **sparsity** property
     - Disadvantages: [**Dying ReLU**](https://datascience.stackexchange.com/questions/5706/what-is-the-dying-relu-problem-in-neural-networks): the neuron state that neuron become inactive for all inputs and **a closed ReLU cannot update its input parameters**. In this state, no gradients flow backward through the neuron. This problem typically arises when the learning rate is set too high. It may be mitigated by using Leaky ReLUs instead.
     - A smooth approximation to ReLU is the **softplus** function `f(x)=ln(1 + e^x)`. The derivative of softplus is the **logistic function**.
+    - `g(z) = max(0, z)`, the derivative is `{1, if z>0; 0, if z<0; undefined, if z=0}`. However, the probability of `z=0` is small, and can let the derivative is `1` or `0` when `z=0`.
     - Range is [0, inf)
   - Noisy ReLU
     - `f(x)=max(0,x+Y)`

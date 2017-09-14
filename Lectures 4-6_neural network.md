@@ -34,7 +34,7 @@
     - Disadvantages: [vanishing gradient](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) (saturate regime kill the gradients); non-zero centered outputs ([zig-zagging](https://zhuanlan.zhihu.com/p/25110450) gradient descent); exponential operations is expensive
     - Range is (0, 1)
   - Tanh
-    - Disadvantages: vanishing gradient (saturate regime kill the gradients); non-zero centered outputs (zig-zagging gradient descent); exponential operations is expensive. The gradient of **tanh** is stronger than **sigmoid**. 
+    - Disadvantages: vanishing gradient (saturate regime kill the gradients); non-zero centered outputs (zig-zagging gradient descent); exponential operations is expensive. The gradient of **tanh** is stronger than **sigmoid**. For example, let `g(z)=a`, the derivative of Sigmoid `dS = a*(1-a)`, and the derivative of tanh `dT = 1-a^2`. When `z=0`, `dS=1/4` and `dT=1`.  
     - Range is (-1, 1)
   - [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))
     - Advantages: fast convergence rate; cheaper operation; **sparsity** property

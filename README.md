@@ -1,5 +1,4 @@
-# CS231n_notes
+# Basic concepts and sample codes about ML and DL
 
-Study notes of [CS231n](http://cs231n.stanford.edu/2016/syllabus). 
-Each lecture includes basic concepts, codes and part solutions of assignment.  
+Since famous [CS231n](http://cs231n.stanford.edu/) and Andrew Ng's new DL course are both introduce basic concepts about ML and DL, so I combine them together. 
 

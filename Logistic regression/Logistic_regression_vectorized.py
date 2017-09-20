@@ -19,8 +19,10 @@ def load_data(filepath):
 
 def sigmoid(z):
     """
-    sigmoid function (i.e., activation)
+    sigmoid / logistic function (i.e., activation)
     compute the sigmoid of z element-wise
+    np.exp is preferable to math.exp:
+        - the parameter z is often a vector or a matrix, and np.exp can compute them element-wise
     """
     return 1.0 / (1.0 + np.exp(-z))
 
@@ -30,16 +32,17 @@ def gradient_descent(X, Y, nx, ny, m, num_iterations, alpha):
     """
     W = np.zeros(shape=(nx, 1), dtype=np.float32) # weights initialization
     b = 0.0 # bias initialization
-    for _ in range(num_iterations):
+    for i in range(num_iterations):
         Z = np.dot(W.T, X) + b # shape: (1, m)
         A = sigmoid(Z) # shape: (1, m)
-        
-        # two strategies are both ok
-        cost_1 = -1.0 / m * (np.dot(Y, np.log(A).T) + np.dot((1-Y), np.log(1-A).T))
-        print('cost_1:{}'.format(np.squeeze(cost_1)))
-        cost_2 = -1.0 / m * np.sum(np.multiply(Y, np.log(A)) + np.multiply(1-Y, np.log(1-A)))
-        print('cost_2:{}'.format(cost_2))
-        
+
+        if i % 1000 == 0:
+            # two strategies are both ok
+            cost_1 = -1.0 / m * (np.dot(Y, np.log(A).T) + np.dot((1-Y), np.log(1-A).T))
+            print('cost_1:{}'.format(np.squeeze(cost_1)))
+            cost_2 = -1.0 / m * np.sum(np.multiply(Y, np.log(A)) + np.multiply(1-Y, np.log(1-A)))
+            print('cost_2:{}'.format(cost_2))
+
         # computation graph
         dZ = A - Y # The derivative of cost to A to Z. shape: (1, m)
         dW = 1.0 / m * np.dot(X, dZ.T) # The derivative of cost to A to Z to W. shape: (nx, 1)
@@ -74,8 +77,9 @@ def plotBestFit(X, Y, w, b):
     x = np.linspace(-3, 3, 100)
     y = -(b+w[0][0] * x) / w[1][0]
     ax.plot(x, y)
-    plt.xlabel("x1")
-    plt.ylabel("x2")
+    plt.xlabel('x1')
+    plt.ylabel('x2')
+    plt.title('Logistic regression')
     plt.show()
 
 

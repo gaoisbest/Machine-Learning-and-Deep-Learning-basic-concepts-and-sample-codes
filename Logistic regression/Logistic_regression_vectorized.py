@@ -33,8 +33,13 @@ def gradient_descent(X, Y, nx, ny, m, num_iterations, alpha):
     for _ in range(num_iterations):
         Z = np.dot(W.T, X) + b # shape: (1, m)
         A = sigmoid(Z) # shape: (1, m)
-        cost = -1.0 / m * np.sum(Y * np.log(A) + (1-Y) * np.log(1-A))
-        print('cost:{}'.format(cost))
+        
+        # two strategies are both ok
+        cost_1 = -1.0 / m * (np.dot(Y, np.log(A).T) + np.dot((1-Y), np.log(1-A).T))
+        print('cost_1:{}'.format(np.squeeze(cost_1)))
+        cost_2 = -1.0 / m * np.sum(np.multiply(Y, np.log(A)) + np.multiply(1-Y, np.log(1-A)))
+        print('cost_2:{}'.format(cost_2))
+        
         # computation graph
         dZ = A - Y # The derivative of cost to A to Z. shape: (1, m)
         dW = 1.0 / m * np.dot(X, dZ.T) # The derivative of cost to A to Z to W. shape: (nx, 1)

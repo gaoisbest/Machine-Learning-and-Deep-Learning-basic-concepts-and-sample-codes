@@ -19,6 +19,7 @@ Suppose that the logistic regression, `p = sigmoid(z)`:
 - The input `z`, i.e., `z = WX + b`, is a linear function of x.
 - Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of x.
 - **Decision boundary**, i.e., `WX = 0`, is linear.
+
 Definition: a classifier is **linear** if its decision boundary is linear in `x` space.  
 references:  
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  

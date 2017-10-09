@@ -22,7 +22,7 @@ Suppose that the logistic regression, `p = sigmoid(z)`:
 
 Definition: **linear** means linear in parameters `W` but not in `X`.
 
-references:  
+References:  
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
 https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier  
 https://stats.stackexchange.com/questions/88603/why-is-logistic-regression-a-linear-model  

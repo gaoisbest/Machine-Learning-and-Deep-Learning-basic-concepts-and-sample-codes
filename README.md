@@ -16,13 +16,18 @@ Sample projects list:
 ## Why is logistic regression a generalized linear model ? 
 Suppose that the logistic regression, `p = sigmoid(z)`:
 - The input `z`, i.e., `z = WX + b`, is a linear function of x.
-- Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of x.
+- Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of parameters `W`.
 - **Decision boundary**, i.e., `WX = 0`, is linear.
+- Both logistic regression and softmax regression can be modeled by exponential family distribution.
 
-Definition: a classifier is **linear** if its decision boundary is linear in `x` space.  
+Definition: **linear** means linear in parameters `W` but not in `X`.
+
 references:  
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
-https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier
+https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier  
+https://stats.stackexchange.com/questions/88603/why-is-logistic-regression-a-linear-model  
+http://cs229.stanford.edu/notes/cs229-notes1.pdf
+
 
 
 Classical problem solutions (to be done):

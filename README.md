@@ -13,6 +13,17 @@ Sample projects list:
 
 - ...
 
+# Classical questions
+## Why is logistic regression a generalized linear model ? 
+Suppose that the logistic regression, `p = sigmoid(z)`:
+- The input `z`, i.e., `z = WX + b`, is a linear function of x.
+- Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of x.
+- **Decision boundary**, i.e., `WX = 0`, is linear.
+Definition: a classifier is **linear** if its decision boundary is linear in `x` space.  
+references:  
+https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
+https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier
+
 
 Classical problem solutions (to be done):
 - [Imbalanced training data]()

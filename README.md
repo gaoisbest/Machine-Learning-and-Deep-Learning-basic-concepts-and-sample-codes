@@ -11,7 +11,6 @@ Sample projects list:
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Neural%20network.png)
 
-- ...
 
 # Classical questions
 ## Why is logistic regression a generalized linear model ? 

@@ -26,8 +26,9 @@ References:
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
 https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier  
 https://stats.stackexchange.com/questions/88603/why-is-logistic-regression-a-linear-model  
-http://cs229.stanford.edu/notes/cs229-notes1.pdf
-
+http://cs229.stanford.edu/notes/cs229-notes1.pdf  
+application in Meituan:  
+https://tech.meituan.com/intro_to_logistic_regression.html
 
 
 Classical problem solutions (to be done):

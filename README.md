@@ -60,6 +60,8 @@ Someone said the L2 regularization always the best choice.
 	db1 = 1./m * np.sum(dZ1, axis=1, keepdims = True)
 	```
 - Lasso and ridge regression
+- Elastic net 
+- L0 norm: the number of non-zero elements. L1 norm is the most convex approximation to L0.
 
 Since we add regularization term, the cost cannot be zero at anytime.
 

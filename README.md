@@ -17,7 +17,7 @@ Sample projects list:
 Suppose that the logistic regression, `p = sigmoid(z)`:
 - The input `z`, i.e., `z = WX + b`, is a linear function of x.
 - Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of parameters `W`.
-- **Decision boundary**, i.e., `WX = 0`, is linear.
+- **Decision boundary**, i.e., `WX = 0`, is linear. This does not mean LR can only handle linear-separable data. Actually, we can convert low-dimensional data to high-dimensional data with the help of **feature mapping**. And the data are linear-separable in the high-dimensional space.
 - Both logistic regression and softmax regression can be modeled by exponential family distribution.
 
 Definition: **linear** means linear in parameters `W` but not in `X`.

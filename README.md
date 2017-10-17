@@ -48,7 +48,8 @@ Since **squaring a number punishes large values more than it punishes small valu
 Both are used for solve over-fitting.  
 In Bayesian view:  
 L1 regularization is equivalent to MAP estimation using **Laplacian prior**.  
-L2 regularization is equivalent to MAP estimation using **Gaussian prior**.
+L2 regularization is equivalent to MAP estimation using **Gaussian prior**.  
+Always try L2 regularization first, since it will give you the best result [2].
 
 - L2 regularization Implementation
   - forward propagation computes cost
@@ -73,7 +74,8 @@ L2 regularization is equivalent to MAP estimation using **Gaussian prior**.
 - Lasso (with L1 regularization) and ridge regression (with L2 regularization).  
 The following picture is from [2].  
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Andrew_Ng_images/Class_2_week_1/Lasso_and_ridge.png)  
-- Elastic net  
+
+- Elastic net (combine L1 and L2)  
 ```
 # from http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html
 1 / (2 * n_samples) * ||y - Xw||^2_2 + alpha * l1_ratio * ||w||_1 + 0.5 * alpha * (1 - l1_ratio) * ||w||^2_2
@@ -84,6 +86,11 @@ References:
 [2] https://www.quora.com/What-is-the-difference-between-L1-and-L2-regularization-How-does-it-solve-the-problem-of-overfitting-Which-regularizer-to-use-and-when  
 [3] https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models  
 [4] https://feature.engineering/regularization/  
+
+## 3. Exploding/vanishing gradients
+- What's the definition of exploding/vanishing gradients ?
+
+- How to solve them ?
 
 
 Classical problem solutions (to be done):

@@ -80,9 +80,9 @@ The following picture is from [2].
 ```
 
 References:  
-[1] https://www.quora.com/Why-does-an-L1-norm-unit-ball-have-diamond-shaped-geometry#!n=12
+[1] https://www.quora.com/Why-does-an-L1-norm-unit-ball-have-diamond-shaped-geometry#!n=12  
 [2] https://www.quora.com/What-is-the-difference-between-L1-and-L2-regularization-How-does-it-solve-the-problem-of-overfitting-Which-regularizer-to-use-and-when  
-[3] https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models
+[3] https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models  
 [4] https://feature.engineering/regularization/  
 
 

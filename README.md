@@ -113,6 +113,8 @@ if norm(gradients) > max_gradients_norm:
 #### Why LSTM resistant to exploding and vanishing gradients?
 - If the forget gate is on and the input and output gates are off, it just passes the memory cell gradients through unmodified at each time step [4].
 
+## 4. Batch normalization
+
 References:  
 [1] https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b  
 [2] https://www.quora.com/Why-is-it-a-problem-to-have-exploding-gradients-in-a-neural-net-especially-in-an-RNN  

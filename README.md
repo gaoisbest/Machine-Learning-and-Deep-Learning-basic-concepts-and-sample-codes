@@ -113,8 +113,6 @@ if norm(gradients) > max_gradients_norm:
 #### Why LSTM resistant to exploding and vanishing gradients?
 - If the forget gate is on and the input and output gates are off, it just passes the memory cell gradients through unmodified at each time step [4].
 
-## 4. Batch normalization
-
 References:  
 [1] https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b  
 [2] https://www.quora.com/Why-is-it-a-problem-to-have-exploding-gradients-in-a-neural-net-especially-in-an-RNN  
@@ -122,10 +120,55 @@ References:
 [4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf
 
 
+
+## 4. Batch normalization
+
+## 5. Evaluation metrics
+### 5.1 Accuracy, precision, recall and F1
+Consider a scenario that predicting the gender of the user (i.e., male or female). This is a classical **binary classification** prediction problem. Let predicted 1 (i.e., positive) indicates male and predicted 0 (i.e., negative) indicates female.  
+**Confusion matrix**:  
+
+|               | Predicted positive |   Predicted negative  |
+|   :---:       | :---:             |     :---:                |
+|Real positive |      TP             |         FN               |
+|Real negative |       FP            |      TN   |  
+
+**Accuracy** = (TP + TN) / (TP+FP+FN+TN)  
+**Error** = (FP + FN) / (TP+FP+FN+TN) = 1 - accuracy  
+**Precision** = TP / (TP + FP) What's the correct proportion of predicted positive ?  
+**Recall** = TP / (TP + FN) What's the pick up proportion of all positive obsverations ?  
+**F1** = 2 * Precision * Recall / (Precision + Recall)  
+
+Which model is better?  
+Model 1:  
+
+|               | Predicted 1 |   Predicted 0  |
+|   :---:       | :---:               |     :---:                |
+|Real 1 |      4             |         2              |
+|Real 0|       3            |      1   |  
+
+Model 2:  
+
+|               | Predicted 1 |   Predicted 0  |
+|   :---:       | :---:               |     :---:                |
+|Real 1 |      6            |         0               |
+|Real 0 |       4            |      0   |  
+
+
+Model 1: accuracy = 92%.  
+Model 2: accuracy = 95%.  
+Model 2 has higher accuracy than model 1, but model 2 is useless. This is called [accuracy paradox](https://en.wikipedia.org/wiki/Accuracy_paradox), which means the model with higher accuracy may not have better generalization power.   
+In general, when **TP < FP**, the accuracy will always increase when we change the classifier to always output **'negative'**. Conversely, when **TN < FN**, the same will happen when we change the classifier to always output **'positive'** [1].  
+
+### 5.2 ROC, AUC
+
+References:  
+[1] https://tryolabs.com/blog/2013/03/25/why-accuracy-alone-bad-measure-classification-tasks-and-what-we-can-do-about-it/  
+[2] https://www.zhihu.com/question/30643044  
+
 Classical problem solutions (to be done):
-- [Imbalanced training data]()
+- [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
 - [Missing data]()
 - [Feature selection]()
-- [Evaluation matrics]()
 - ...
 

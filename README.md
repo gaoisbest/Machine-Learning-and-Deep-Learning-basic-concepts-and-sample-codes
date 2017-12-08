@@ -172,3 +172,7 @@ Classical problem solutions (to be done):
 - [Feature selection]()
 - ...
 
+## 6. Loss function
+- Least square
+- Cross entropy (shortcut of KL divergence, relative entropy)
+- Maximum margin

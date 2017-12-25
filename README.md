@@ -20,14 +20,19 @@ Suppose that the logistic regression, `p = sigmoid(z)`:
 - **Decision boundary**, i.e., `WX = 0`, is linear. This does not mean LR can only handle linear-separable data. Actually, we can convert low-dimensional data to high-dimensional data with the help of **feature mapping**. And the data are linear-separable in the high-dimensional space.
 - Both logistic regression and softmax regression can be modeled by exponential family distribution.
 
-Definition: **linear** means linear in parameters `W` but not in `X`.
+### What's the difference between linear and non-linear regression ? 
+- It is **wrong** that **linear regression model generates straight lines and nonlinear regression model curvature**. Actually, both linear and non-linear models can fit curves.  
+- Linear means **linear in parameters `W` but not in `X`**. For example, both functions `f_1 = w_1x_1 + w_2x_2 + b` and `f_2 = w_1x_1 + w_2x_2 + w_3x_2^{2} + b` are linear functions. The most common operation is adding **polynomial terms** (i.e., quadratic term or cubic term) in linear model.
+- Example of non-linear function `f_3 = w_1x^{w_1}`
+- **`log` transform** can be used to convert nonlinear function `y=e^{b}x_1^{w_1}x_2^{w_2}` to linear function `lny = b + w_1lnx_1 + w_2lnx_2`
 
 References:  
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
 https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier  
 https://stats.stackexchange.com/questions/88603/why-is-logistic-regression-a-linear-model  
 http://cs229.stanford.edu/notes/cs229-notes1.pdf  
-
+http://statisticsbyjim.com/regression/difference-between-linear-nonlinear-regression-models/  
+http://statisticsbyjim.com/regression/curve-fitting-linear-nonlinear-regression/  
 Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
 

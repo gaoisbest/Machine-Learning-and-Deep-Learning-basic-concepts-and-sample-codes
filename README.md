@@ -130,7 +130,8 @@ DNN could extract features layer by layer, and it has a **hierarchical architect
 ### How to set the number of neurons per hidden layer ? 
 A common strategy is to size the number of neurons to form a funnel (i.e., **deeper layer has fewer neruons**). The analogy is many low-level features are coalesce into fewer high-level features.  
 A simple approach is to pick a complex model with early stopping to prevent from overfitting.  
-References:
+
+References:  
 [1] Hands on machine learning with Scikit-Learn and TensorFlow p271
 
 ## 5. Batch normalization

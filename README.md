@@ -124,12 +124,19 @@ References:
 [3] http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/  
 [4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf
 
+## 4. Hyperparameters in Nerual Networks
+### How to choose the number of hidden layers ? 
+DNN could extract features layer by layer, and it has a **hierarchical architecture**. For many problems, **one or two hidden layers** will works fine. For complex problem, you can gradually increase the number of hidden layers, until overfitting occurs.
+### How to set the number of neurons per hidden layer ? 
+A common strategy is to size the number of neurons to form a funnel (i.e., **deeper layer has fewer neruons**). The analogy is many low-level features are coalesce into fewer high-level features.  
+A simple approach is to pick a complex model with early stopping to prevent from overfitting.  
+References:
+[1] Hands on machine learning with Scikit-Learn and TensorFlow p271
 
+## 5. Batch normalization
 
-## 4. Batch normalization
-
-## 5. Evaluation metrics
-### 5.1 Accuracy, precision, recall and F1
+## 6. Evaluation metrics
+### 6.1 Accuracy, precision, recall and F1
 Consider a scenario that predicting the gender of the user (i.e., male or female). This is a classical **binary classification** prediction problem. Let predicted 1 (i.e., positive) indicates male and predicted 0 (i.e., negative) indicates female.  
 **Confusion matrix**:  
 
@@ -165,7 +172,7 @@ Model 2: accuracy = 95%.
 Model 2 has higher accuracy than model 1, but model 2 is useless. This is called [accuracy paradox](https://en.wikipedia.org/wiki/Accuracy_paradox), which means the model with higher accuracy may not have better generalization power.   
 In general, when **TP < FP**, the accuracy will always increase when we change the classifier to always output **'negative'**. Conversely, when **TN < FN**, the same will happen when we change the classifier to always output **'positive'** [1].  
 
-### 5.2 ROC, AUC
+### 6.2 ROC, AUC
 
 References:  
 [1] https://tryolabs.com/blog/2013/03/25/why-accuracy-alone-bad-measure-classification-tasks-and-what-we-can-do-about-it/  
@@ -177,7 +184,7 @@ Classical problem solutions (to be done):
 - [Feature selection]()
 - ...
 
-## 6. Loss function
+## 7. Loss function
 - Least square
 - Cross entropy (shortcut of KL divergence, relative entropy)
 - Maximum margin

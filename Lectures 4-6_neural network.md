@@ -53,6 +53,8 @@
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/CS231n_images/Activation_and_derivative.png)
 
+References:
+[1] Hands on machine learning with Scikit-Learn and TensorFlow p263
 
 - Data preprocessing
   - PCA. 

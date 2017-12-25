@@ -42,8 +42,6 @@
     - A smooth approximation to ReLU is the **softplus** function `f(x)=ln(1 + e^x)`. The derivative of softplus is the **logistic function**.
     - `g(z) = max(0, z)`, the derivative is `{1, if z>0; 0, if z<0; undefined, if z=0}`. However, the probability of `z=0` is small, and can let the derivative is `1` or `0` when `z=0`.
     - Range is [0, inf)
-  - Noisy ReLU
-    - `f(x)=max(0,x+Y)`
   - Leaky ReLU
     - `f(x)=max(0.01x, x)`
   - Parameteric ReLU
@@ -51,6 +49,9 @@
   - Maxout
   - Exponential LU
     - ELU try to make the mean activations closer to zero which speeds up learning. `f(x) = [x if x>=0 else a(e^x - 1)]`, where `a >= 0` is a hyper-parameter.
+
+
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/CS231n_images/Activation_and_derivative.png)
 
 
 - Data preprocessing

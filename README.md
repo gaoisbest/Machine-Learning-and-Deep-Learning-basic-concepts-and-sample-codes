@@ -93,21 +93,35 @@ References:
 [4] https://feature.engineering/regularization/  
 
 ## 3. Exploding/vanishing gradients  
-http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf  
-http://www.deeplearningbook.org/contents/rnn.html  
-
 #### Vanishing gradients [1, 3]:
 - Results: early layers are **converged slower** than later layers. 
-- Reason: `Sigmoid` and `tanh` activations suffer from vanishing gradients. But ReLU activation does not have this problem.
-s property of 'squashing' the input space into a small region. 
-- Solutions:  
-[1] ReLU or Leaky ReLU. ReLU can have **dying** states (caused by i.e., large negative bias), whose both outputs and gradients are zero. Leaky ReLU solves this problem.  
-[2] Proper weights initialization can reduce the effect of vanishing gradients.  
-[3] LSTM or GRU.
-- It is a more serious problem than exploding gradients.
+- Reason: `sigmoid` and `tanh` activations suffer from vanishing gradients. But `ReLU` activation does not have this problem.
+- Solutions:
+	- **Activation function**.`ReLU` or `Leaky ReLU`. `ReLU` can have **dying** states (caused by i.e., large learning rate or large negative bias), whose both outputs and gradients are zero. `Leaky ReLU` solves this problem. Variants of `Leaky ReLU` is `randomized leaky ReLU (RReLU)`, `parametric leaky ReLU (PReLU)`. `exponential linear unit (ELU)`.  
+	**ELU > Leaky ReLU > ReLU > tanh > sigmoid** [5].
+	- **Weights initialization**. i.e., `Xavier` initialization for `sigmoid` and `tanh`, `He` initialization for `ReLU` and `Leaky ReLU`. 
+	- **Batch Normalization**.
+- Implementation [5]
+```
+# xavier
+tf.contrib.layers.fully_connected(inputs, num_outputs, weights_initializer=initializers.xavier_initializer())
+
+# He
+he_init = tf.contrib.layers.variance_scaling_initializer() # default is He initialization that only consider fan-in
+tf.contrib.layers.fully_connected(inputs, num_outputs, weights_initializer=he_init)
+
+# elu
+tf.contrib.layers.fully_connected(inputs, num_outputs, activation_fn=tf.nn.elu)
+
+# leaky relu
+def leaky_relu(z, name=None):
+    return tf.maximum(0.01*z, z, name=name)
+tf.contrib.layers.fully_connected(inputs, num_outputs, activation_fn=leaky_relu)
+```
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Xavier_He_initialization.png)
 
 #### Exploding gradients [2, 3]:
-- Results: gradients and cost become NaN
+- Results: gradients and cost become NaN.
 - Reason: large weights and derivative of activation multiplication during back propagation. It is particularly occured in RNNs.
 - Solution: gradient clipping
 ```
@@ -122,7 +136,8 @@ References:
 [1] https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b  
 [2] https://www.quora.com/Why-is-it-a-problem-to-have-exploding-gradients-in-a-neural-net-especially-in-an-RNN  
 [3] http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/  
-[4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf
+[4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf  
+[5] Hands on machine learning with Scikit-Learn and TensorFlow p278, P281
 
 ## 4. Hyperparameters in Nerual Networks
 ### How to choose the number of hidden layers ? 

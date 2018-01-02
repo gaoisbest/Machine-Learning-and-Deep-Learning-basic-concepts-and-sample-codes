@@ -121,12 +121,21 @@ tf.contrib.layers.fully_connected(inputs, num_outputs, activation_fn=leaky_relu)
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Xavier_He_initialization.png)
 
 #### Exploding gradients [2, 3]:
-- Results: gradients and cost become NaN.
+- Results: gradients and cost become `NaN`.
 - Reason: large weights and derivative of activation multiplication during back propagation. It is particularly occured in RNNs.
-- Solution: gradient clipping
+- Solution: **gradients clipping**.
+- Implementation:  
 ```
+# pseudo code
 if norm(gradients) > max_gradients_norm:
     gradients *= max_gradients_norm/norm(gradients)
+
+# real code
+variables = tf.trainable_variables()
+gradients = tf.gradients(ys=cost, xs=variables)
+clipped_gradients, _ = tf.clip_by_global_norm(gradients, clip_norm=self.clip_norm)
+optimizer = tf.train.AdamOptimizer(learning_rate=1e-3)
+optimize = optimizer.apply_gradients(grads_and_vars=zip(clipped_gradients, variables), global_step=self.global_step)
 ```
 
 #### Why LSTM resistant to exploding and vanishing gradients?

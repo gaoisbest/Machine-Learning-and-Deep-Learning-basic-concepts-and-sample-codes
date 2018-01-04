@@ -100,7 +100,9 @@ References:
 	- **Activation function**.`ReLU` or `Leaky ReLU`. `ReLU` can have **dying** states (caused by i.e., large learning rate or large negative bias), whose both outputs and gradients are zero. `Leaky ReLU` solves this problem. Variants of `Leaky ReLU` is `randomized leaky ReLU (RReLU)`, `parametric leaky ReLU (PReLU)`. `exponential linear unit (ELU)`.  
 	**ELU > Leaky ReLU > ReLU > tanh > sigmoid** [5].
 	- **Weights initialization**. i.e., `Xavier` initialization for `sigmoid` and `tanh`, `He` initialization for `ReLU` and `Leaky ReLU`. 
-	- **Batch Normalization**.
+	- **Batch Normalization**. Address vanishing or exploding gradients problem during training [6].
+		- Zero-centering + normalizing + scaling + shifting
+		- At test time, use the whole training set's mean and standard deviation.
 - Implementation [5]
 ```
 # xavier
@@ -146,7 +148,8 @@ References:
 [2] https://www.quora.com/Why-is-it-a-problem-to-have-exploding-gradients-in-a-neural-net-especially-in-an-RNN  
 [3] http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/  
 [4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf  
-[5] Hands on machine learning with Scikit-Learn and TensorFlow p278, P281
+[5] Hands on machine learning with Scikit-Learn and TensorFlow p278, P281  
+[6] https://www.zhihu.com/question/38102762
 
 ## 4. Hyperparameters in Nerual Networks
 ### How to choose the number of hidden layers ? 

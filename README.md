@@ -213,6 +213,7 @@ Classical problem solutions (to be done):
 - ...
 
 ## 7. Loss function
-- Least square
-- Cross entropy (shortcut of KL divergence, relative entropy)
-- Maximum margin
+- Least mean square: regression
+- Cross entropy (shortcut of KL divergence, relative entropy): logistic regression
+- Exponential loss: Adaboost
+- Hinge loss: SVM

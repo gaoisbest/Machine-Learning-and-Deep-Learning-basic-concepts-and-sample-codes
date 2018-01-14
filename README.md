@@ -152,6 +152,9 @@ References:
 [6] https://www.zhihu.com/question/38102762
 
 ## 4. Hyperparameters in Nerual Networks
+### Back propagation
+**Chain rule with memorization.**
+
 ### How to choose the number of hidden layers ? 
 DNN could extract features layer by layer, and it has a **hierarchical architecture**. For many problems, **one or two hidden layers** will works fine. For complex problem, you can gradually increase the number of hidden layers, until overfitting occurs.
 ### How to set the number of neurons per hidden layer ? 

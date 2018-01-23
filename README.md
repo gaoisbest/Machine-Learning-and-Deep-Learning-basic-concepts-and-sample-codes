@@ -142,6 +142,7 @@ optimize = optimizer.apply_gradients(grads_and_vars=zip(clipped_gradients, varia
 
 #### Why LSTM resistant to exploding and vanishing gradients?
 - If the forget gate is on and the input and output gates are off, it just passes the memory cell gradients through unmodified at each time step [4].
+- CEC (Constant Error Carrousel) mechanism with gate [7].
 
 References:  
 [1] https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b  
@@ -149,7 +150,8 @@ References:
 [3] http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/  
 [4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf  
 [5] Hands on machine learning with Scikit-Learn and TensorFlow p278, P281  
-[6] https://www.zhihu.com/question/38102762
+[6] https://www.zhihu.com/question/38102762  
+[7] https://www.zhihu.com/question/34878706
 
 ## 4. Hyperparameters in Nerual Networks
 ### Back propagation

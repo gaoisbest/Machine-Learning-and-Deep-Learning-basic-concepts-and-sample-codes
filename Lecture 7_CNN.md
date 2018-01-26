@@ -14,8 +14,8 @@
 - FC
   
 ## CNNs properties
-  - Local connectivity: the depth of filter is equals to the depth of the input.
-  - Parameter sharing.
+- Local connectivity: the depth of filter is equals to the depth of the input.
+- Parameter sharing.
 
 # Example
 Please refer to [tf_5_CNN_text_classification.ipynb](https://github.com/gaoisbest/Tensorflow_notes_and_projects/blob/master/README.md) for more details about CNNs in text classification.

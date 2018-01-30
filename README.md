@@ -165,6 +165,19 @@ A simple approach is to pick a complex model with early stopping to prevent from
 
 References:  
 [1] Hands on machine learning with Scikit-Learn and TensorFlow p271
+### How does batch size influence training speed and model accuracy ?
+Batch gradient descent
+- slow
+- may converge to local minimum, and yield worse performance
+- suffer from GPU memory limitation
+
+Stochastic gradient descent
+- fast
+- not stable
+
+Mini-batch gradient descent
+- fast as SGD (matrix operation with GPU)
+- escape from local minimum and more stable
 
 ## 5. Batch normalization
 

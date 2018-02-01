@@ -153,12 +153,13 @@ References:
 [6] https://www.zhihu.com/question/38102762  
 [7] https://www.zhihu.com/question/34878706
 
-## 4. Hyperparameters in Nerual Networks
+## 4. Nerual Networks
 ### Back propagation
 **Chain rule with memorization.**
 
 ### How to choose the number of hidden layers ? 
 DNN could extract features layer by layer, and it has a **hierarchical architecture**. For many problems, **one or two hidden layers** will works fine. For complex problem, you can gradually increase the number of hidden layers, until overfitting occurs.
+
 ### How to set the number of neurons per hidden layer ? 
 A common strategy is to size the number of neurons to form a funnel (i.e., **deeper layer has fewer neruons**). The analogy is many low-level features are coalesce into fewer high-level features.  
 A simple approach is to pick a complex model with early stopping to prevent from overfitting.  
@@ -178,6 +179,11 @@ Stochastic gradient descent
 Mini-batch gradient descent
 - fast as SGD (matrix operation with GPU)
 - escape from local minimum and more stable
+
+### XOR solution
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/XOR.png)  
+
+One hidden layer with two neurons. The activation in above image is step function.
 
 ## 5. Batch normalization
 

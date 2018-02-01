@@ -99,7 +99,7 @@ References:
 - Solutions:
 	- **Activation function**.`ReLU` or `Leaky ReLU`. `ReLU` can have **dying** states (caused by i.e., large learning rate or large negative bias), whose both outputs and gradients are zero. `Leaky ReLU` solves this problem. Variants of `Leaky ReLU` is `randomized leaky ReLU (RReLU)`, `parametric leaky ReLU (PReLU)`. `exponential linear unit (ELU)`.  
 	**ELU > Leaky ReLU > ReLU > tanh > sigmoid** [5].
-	- **Weights initialization**. i.e., `Xavier` initialization for `sigmoid` and `tanh`, `He` initialization for `ReLU` and `Leaky ReLU`. 
+	- **Weights initialization**. i.e., `Xavier` initialization (**Two goal**: the **outputs variance** of each layer is equal to the **inputs variance**; the **gradients variance** before and after flowing through a layer is equal) for `sigmoid` and `tanh`, `He` initialization for `ReLU` and `Leaky ReLU`. 
 	- **Batch Normalization**. Address vanishing or exploding gradients problem during training [6].
 		- Zero-centering + normalizing + scaling + shifting
 		- At test time, use the whole training set's mean and standard deviation.

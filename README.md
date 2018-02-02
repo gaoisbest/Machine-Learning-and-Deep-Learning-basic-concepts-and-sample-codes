@@ -100,7 +100,7 @@ References:
 	- **Activation function**.`ReLU` or `Leaky ReLU`. `ReLU` can have **dying** states (caused by i.e., large learning rate or large negative bias), whose both outputs and gradients are zero. `Leaky ReLU` solves this problem. Variants of `Leaky ReLU` is `randomized leaky ReLU (RReLU)`, `parametric leaky ReLU (PReLU)`. `exponential linear unit (ELU)`.  
 	**ELU > Leaky ReLU > ReLU > tanh > sigmoid** [5].
 	- **Weights initialization**. i.e., `Xavier` initialization (**Two goal**: the **outputs variance** of each layer is equal to the **inputs variance**; the **gradients variance** before and after flowing through a layer is equal) for `sigmoid` and `tanh`, `He` initialization for `ReLU` and `Leaky ReLU`. 
-	- **Batch Normalization**. Address vanishing or exploding gradients problem during training [6].
+	- **Batch Normalization**. Address vanishing or exploding gradients problem during training [6]. For more detailed, see 4. Batch Normalization.
 		- Zero-centering + normalizing + scaling + shifting
 		- At test time, use the whole training set's mean and standard deviation.
 - Implementation [5]
@@ -149,11 +149,21 @@ References:
 [2] https://www.quora.com/Why-is-it-a-problem-to-have-exploding-gradients-in-a-neural-net-especially-in-an-RNN  
 [3] http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/  
 [4] http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/readings/L15%20Exploding%20and%20Vanishing%20Gradients.pdf  
-[5] Hands on machine learning with Scikit-Learn and TensorFlow p278, P281  
+[5] Hands on machine learning with Scikit-Learn and TensorFlow p278, P281  
 [6] https://www.zhihu.com/question/38102762  
 [7] https://www.zhihu.com/question/34878706
 
-## 4. Nerual Networks
+## 4. Batch Normalization
+- He initialization and ELU can reduce the vanishing gradients **at the begining of training**.
+- Address the vanishing gradients during **training**.
+- **Batch** means evaluating the mean and standard deviation of the inputs over current mini-batch.
+- At test time, use the whole training set's mean and standard deviation.
+- BN can reduce vanishing gradients problem, less sensitive to the weight initialization, reduce the need for other regularization techniques (such as dropout).
+
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Batch_normalization_formula.png)  
+
+
+## 5. Nerual Networks
 ### Back propagation
 **Chain rule with memorization.**
 
@@ -184,8 +194,6 @@ Mini-batch gradient descent
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/XOR.png)  
 
 One hidden layer with two neurons. The activation in above image is step function.
-
-## 5. Batch normalization
 
 ## 6. Evaluation metrics
 ### 6.1 Accuracy, precision, recall and F1

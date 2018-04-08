@@ -1,8 +1,26 @@
-# Basic concepts and sample codes about ML and DL
+# Introduction
+Since famous [CS231n](http://cs231n.stanford.edu/) and [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) are both introducing basic concepts about ML and DL, so I combine them together. 
 
-Since famous [CS231n](http://cs231n.stanford.edu/) and [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) are both introduce basic concepts about ML and DL, so I combine them together. 
+# Basic concepts
+## 1. Loss function
+- Mean square error (MSE)
+    - Linear regression
+    - L2 loss
+- Logarithmic loss
+	- Logistic regression.
+	- **L(Y, f(x)) = -logf(x)**. [Fast.ai.wiki](http://wiki.fast.ai/index.php/Log_Loss) gives a detailed explanation of log loss.
+- Cross entropy
+	- shortcut of KL divergence, relative entropy
+- Exponential loss
+	- Adaboost
+- Hinge loss
+	- SVM
+## 2. Empirical risk minimization (ERM) and Structural risk minimization (SRM)
+**ERM = minimize loss**, it may leads to over-fitting phenomenon. For example, maximum likelihood estimation (MLE).  
+**SRM = ERM + regulairzation**. For example, maximum a posterior (MAP).  
+The [link](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/) gives a comparision of MLE and MAP.
 
-Sample projects list:
+# Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic%20regression.png)
@@ -243,9 +261,3 @@ Classical problem solutions (to be done):
 - [Missing data]()
 - [Feature selection]()
 - ...
-
-## 7. Loss function
-- Least mean square: regression
-- Cross entropy (shortcut of KL divergence, relative entropy): logistic regression
-- Exponential loss: Adaboost
-- Hinge loss: SVM

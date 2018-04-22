@@ -1,5 +1,5 @@
 # Introduction
-Since famous [CS231n](http://cs231n.stanford.edu/) and [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) are both introducing basic concepts about ML and DL, so I combine them together. 
+Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
 
 # Basic concepts
 ## 1. Loss function
@@ -19,6 +19,36 @@ Since famous [CS231n](http://cs231n.stanford.edu/) and [Andrew Ng's new DL cours
 **ERM = minimize loss**, it may leads to over-fitting phenomenon. For example, maximum likelihood estimation (MLE).  
 **SRM = ERM + regulairzation**. For example, maximum a posterior (MAP).  
 The [link](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/) gives a comparision of MLE and MAP.
+
+## 3. Feature engineering
+### Definition
+Process of extracting **feature vector** (i.e., contain numerical values) from raw data. It will roughly cost 75% times of whole process.
+### Categories
+- Numerical feature
+	- Copied directly
+- String feature
+	- One-hot encoding
+- Categorical (enumerated) feature
+	- **Boolean** strategy (i.e., is it yes or no ?)
+	- For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`.
+- Missing value
+	- **Additional boolean** feature
+	- For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
+	
+### Qualities of good features
+- The feature value should appears at least more than 5 times in the data set. Features like ID is not a good feature since for each sample, the ID is unqiue.
+- The feature has clear and obvious meaning.
+- The definition of the feature should not change over time.
+
+### [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
+- **Scaling**
+	- Min-max
+	- Z-score
+- Outlier
+	- Log
+	- Clipping
+
+
 
 # Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)

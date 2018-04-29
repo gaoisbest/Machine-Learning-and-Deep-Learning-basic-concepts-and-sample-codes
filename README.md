@@ -293,3 +293,7 @@ Mini-batch gradient descent
 
 One hidden layer with two neurons. The activation in above image is step function.
 
+## 6. Tips of training DL models
+### 6.1: Validate the correctness of public repository
+Input 10 training samples, shut down the dropout and L2 regularizations, predict the 10 testing samples (same as the 10 training samples). If the cost is approximately 0, 
+

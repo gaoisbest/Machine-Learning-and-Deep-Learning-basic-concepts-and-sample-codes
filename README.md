@@ -2,7 +2,44 @@
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
 
 # Basic concepts
-## 1. Loss function
+## 1. Feature engineering
+### 1.1 Definition
+Process of extracting **feature vector** (i.e., contain numerical values) from raw data. It will roughly cost 75% times of whole process.
+### 1.2 Categories
+- Numerical feature
+	- Copied directly
+- String feature
+	- One-hot encoding
+- Categorical (enumerated) feature
+	- **Boolean** strategy (i.e., is it yes or no ?)
+	- For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`.
+- Missing value
+	- **Additional boolean** feature
+	- For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
+	
+### 1.3 Qualities of good features
+- The feature value should appears at least more than 5 times in the data set. Features like ID is not a good feature since for each sample, the ID is unqiue.
+- The feature has clear and obvious meaning.
+- The definition of the feature should not change over time.
+
+### 1.4 [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
+- **Scaling**
+	- Min-max
+	- Z-score
+- Outlier
+	- Log
+	- Clipping
+
+
+Classical problem solutions (to be done):
+- [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
+- [Missing data]()
+- [Feature selection]()
+- ...
+
+	
+## 2. Loss function
+### 2.1 Categories
 - Mean square error (MSE)
     - Linear regression
     - L2 loss
@@ -15,40 +52,53 @@ Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https:/
 	- Adaboost
 - Hinge loss
 	- SVM
-## 2. Empirical risk minimization (ERM) and Structural risk minimization (SRM)
+### 2.2 Empirical risk minimization (ERM) and Structural risk minimization (SRM)
 **ERM = minimize loss**, it may leads to over-fitting phenomenon. For example, maximum likelihood estimation (MLE).  
 **SRM = ERM + regulairzation**. For example, maximum a posterior (MAP).  
 The [link](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/) gives a comparision of MLE and MAP.
 
-## 3. Feature engineering
-### Definition
-Process of extracting **feature vector** (i.e., contain numerical values) from raw data. It will roughly cost 75% times of whole process.
-### Categories
-- Numerical feature
-	- Copied directly
-- String feature
-	- One-hot encoding
-- Categorical (enumerated) feature
-	- **Boolean** strategy (i.e., is it yes or no ?)
-	- For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`.
-- Missing value
-	- **Additional boolean** feature
-	- For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
-	
-### Qualities of good features
-- The feature value should appears at least more than 5 times in the data set. Features like ID is not a good feature since for each sample, the ID is unqiue.
-- The feature has clear and obvious meaning.
-- The definition of the feature should not change over time.
+## 3. Evaluation metrics
+### 3.1 Accuracy, precision, recall and F1
+Consider a scenario that predicting the gender of the user (i.e., male or female). This is a classical **binary classification** prediction problem. Let predicted 1 (i.e., positive) indicates male and predicted 0 (i.e., negative) indicates female.  
+**Confusion matrix**:  
 
-### [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
-- **Scaling**
-	- Min-max
-	- Z-score
-- Outlier
-	- Log
-	- Clipping
+|               | Predicted positive |   Predicted negative  |
+|   :---:       | :---:             |     :---:                |
+|Real positive |      TP             |         FN               |
+|Real negative |       FP            |      TN   |  
+
+**Accuracy** = (TP + TN) / (TP+FP+FN+TN)  
+**Error** = (FP + FN) / (TP+FP+FN+TN) = 1 - accuracy  
+**Precision** = TP / (TP + FP) What's the correct proportion of predicted positive ?  
+**Recall** = TP / (TP + FN) What's the pick up proportion of all positive obsverations ?  
+**F1** = 2 * Precision * Recall / (Precision + Recall)  
+
+Which model is better?  
+Model 1:  
+
+|               | Predicted 1 |   Predicted 0  |
+|   :---:       | :---:               |     :---:                |
+|Real 1 |      4             |         2              |
+|Real 0|       3            |      1   |  
+
+Model 2:  
+
+|               | Predicted 1 |   Predicted 0  |
+|   :---:       | :---:               |     :---:                |
+|Real 1 |      6            |         0               |
+|Real 0 |       4            |      0   |  
 
 
+Model 1: accuracy = 92%.  
+Model 2: accuracy = 95%.  
+Model 2 has higher accuracy than model 1, but model 2 is useless. This is called [accuracy paradox](https://en.wikipedia.org/wiki/Accuracy_paradox), which means the model with higher accuracy may not have better generalization power.   
+In general, when **TP < FP**, the accuracy will always increase when we change the classifier to always output **'negative'**. Conversely, when **TN < FN**, the same will happen when we change the classifier to always output **'positive'** [1].  
+
+### 3.2 ROC, AUC
+
+References:  
+[1] https://tryolabs.com/blog/2013/03/25/why-accuracy-alone-bad-measure-classification-tasks-and-what-we-can-do-about-it/  
+[2] https://www.zhihu.com/question/30643044  
 
 # Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)
@@ -243,51 +293,3 @@ Mini-batch gradient descent
 
 One hidden layer with two neurons. The activation in above image is step function.
 
-## 6. Evaluation metrics
-### 6.1 Accuracy, precision, recall and F1
-Consider a scenario that predicting the gender of the user (i.e., male or female). This is a classical **binary classification** prediction problem. Let predicted 1 (i.e., positive) indicates male and predicted 0 (i.e., negative) indicates female.  
-**Confusion matrix**:  
-
-|               | Predicted positive |   Predicted negative  |
-|   :---:       | :---:             |     :---:                |
-|Real positive |      TP             |         FN               |
-|Real negative |       FP            |      TN   |  
-
-**Accuracy** = (TP + TN) / (TP+FP+FN+TN)  
-**Error** = (FP + FN) / (TP+FP+FN+TN) = 1 - accuracy  
-**Precision** = TP / (TP + FP) What's the correct proportion of predicted positive ?  
-**Recall** = TP / (TP + FN) What's the pick up proportion of all positive obsverations ?  
-**F1** = 2 * Precision * Recall / (Precision + Recall)  
-
-Which model is better?  
-Model 1:  
-
-|               | Predicted 1 |   Predicted 0  |
-|   :---:       | :---:               |     :---:                |
-|Real 1 |      4             |         2              |
-|Real 0|       3            |      1   |  
-
-Model 2:  
-
-|               | Predicted 1 |   Predicted 0  |
-|   :---:       | :---:               |     :---:                |
-|Real 1 |      6            |         0               |
-|Real 0 |       4            |      0   |  
-
-
-Model 1: accuracy = 92%.  
-Model 2: accuracy = 95%.  
-Model 2 has higher accuracy than model 1, but model 2 is useless. This is called [accuracy paradox](https://en.wikipedia.org/wiki/Accuracy_paradox), which means the model with higher accuracy may not have better generalization power.   
-In general, when **TP < FP**, the accuracy will always increase when we change the classifier to always output **'negative'**. Conversely, when **TN < FN**, the same will happen when we change the classifier to always output **'positive'** [1].  
-
-### 6.2 ROC, AUC
-
-References:  
-[1] https://tryolabs.com/blog/2013/03/25/why-accuracy-alone-bad-measure-classification-tasks-and-what-we-can-do-about-it/  
-[2] https://www.zhihu.com/question/30643044  
-
-Classical problem solutions (to be done):
-- [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
-- [Missing data]()
-- [Feature selection]()
-- ...

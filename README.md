@@ -60,12 +60,15 @@ The [link](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/) gives a co
 ## 3. Evaluation metrics
 ### 3.1 Accuracy, precision, recall and F1
 Consider a scenario that predicting the gender of the user (i.e., male or female). This is a classical **binary classification** prediction problem. Let predicted 1 (i.e., positive) indicates male and predicted 0 (i.e., negative) indicates female.  
+
 **Confusion matrix**:  
 
 |               | Predicted positive |   Predicted negative  |
 |   :---:       | :---:             |     :---:                |
 |Real positive |      TP             |         FN               |
 |Real negative |       FP            |      TN   |  
+
+Multi-class confusion matrix: element at row *i* and column *j* denotes the true class *i* and is being classified in class *j*.  
 
 **Accuracy** = (TP + TN) / (TP+FP+FN+TN), suffer from **class imbalance** problem.  
 **Error** = (FP + FN) / (TP+FP+FN+TN) = 1 - accuracy  
@@ -102,10 +105,12 @@ In general, when **TP < FP**, the accuracy will always increase when we change t
 **Recall@k**  
 
 ### 3.2 ROC, AUC  
-**ROC (Receiver Operating Characteristic curve)**: A curve of true positive rate vs. false positive rate at different **classification thresholds**. The **x-axis** is **False Positive rate**, and the y-axis is **True Positive rate**. [3]  
-Close to the **up left** point (TPR=1.0, FPR=0.0) indicates the model is better. On the diagonal line, TPR = FPR, which means the **random guess**.  
+**ROC (Receiver Operating Characteristic curve)**: A curve of true positive rate vs. false positive rate at different **classification thresholds**. The **x-axis** is **False Positive rate**, and the y-axis is **True Positive rate**. [3] .  
 
-**AUC (Area under the ROC curve) **:  
+Close to the **up left** point (TPR=1.0, FPR=0.0) indicates the model is better. On the diagonal line, TPR = FPR, which means the **random guess**.  
+
+
+**AUC (Area under the ROC curve)**:  
 
 ### 3.3 BLEU
 

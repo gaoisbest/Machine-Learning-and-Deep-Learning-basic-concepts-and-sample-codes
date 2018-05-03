@@ -67,11 +67,16 @@ Consider a scenario that predicting the gender of the user (i.e., male or female
 |Real positive |      TP             |         FN               |
 |Real negative |       FP            |      TN   |  
 
-**Accuracy** = (TP + TN) / (TP+FP+FN+TN)  
+**Accuracy** = (TP + TN) / (TP+FP+FN+TN), suffer from **class imbalance** problem.  
 **Error** = (FP + FN) / (TP+FP+FN+TN) = 1 - accuracy  
+
 **Precision** = TP / (TP + FP) What's the correct proportion of predicted positive ?  
 **Recall** = TP / (TP + FN) What's the pick up proportion of all positive obsverations ?  
-**F1** = 2 * Precision * Recall / (Precision + Recall)  
+**F1** = 2 * Precision * Recall / (Precision + Recall)  
+Increase **Precision** indicates increase classification threshold; meanwhile, increase **Recall** indicates decrease classification threshold.  
+
+**False Positive** = FP / (FP + TN)  
+**True Positive** = TP / (TP + FN), i.e., **Recall**.  
 
 Which model is better?  
 Model 1:  
@@ -96,12 +101,19 @@ In general, when **TP < FP**, the accuracy will always increase when we change t
 
 **Recall@k**  
 
-### 3.2 ROC, AUC
+### 3.2 ROC, AUC  
+**ROC (Receiver Operating Characteristic curve)**: A curve of true positive rate vs. false positive rate at different **classification thresholds**. The **x-axis** is **False Positive rate**, and the y-axis is **True Positive rate**. [3]  
+Close to the **up left** point (TPR=1.0, FPR=0.0) indicates the model is better. On the diagonal line, TPR = FPR, which means the **random guess**.  
+
+**AUC (Area under the ROC curve) **:  
+
 ### 3.3 BLEU
 
 References:  
 [1] https://tryolabs.com/blog/2013/03/25/why-accuracy-alone-bad-measure-classification-tasks-and-what-we-can-do-about-it/  
 [2] https://www.zhihu.com/question/30643044  
+[3] https://developers.google.cn/machine-learning/crash-course/classification/true-false-positive-negative  
+
 
 # Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)
@@ -127,6 +139,15 @@ Suppose that the logistic regression, `p = sigmoid(z)`:
 - Example of non-linear function `f_3 = w_1x^{w_1}`
 - **`log` transform** can be used to convert nonlinear function `y=e^{b}x_1^{w_1}x_2^{w_2}` to linear function `lny = b + w_1lnx_1 + w_2lnx_2`
 
+### The influence of classification threshold
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Precision_Recall_1.png)  
+Precision = 0.8, Recall = 0.73.  
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Precision_Recall_2.png)  
+Precision = 0.88, Recall = 0.64.  
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Precision_Recall_3.png)  
+Precision = 0.75, Recall = 0.82.  
+
+
 References:  
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
 https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier  
@@ -134,6 +155,7 @@ https://stats.stackexchange.com/questions/88603/why-is-logistic-regression-a-lin
 http://cs229.stanford.edu/notes/cs229-notes1.pdf  
 http://statisticsbyjim.com/regression/difference-between-linear-nonlinear-regression-models/  
 http://statisticsbyjim.com/regression/curve-fitting-linear-nonlinear-regression/  
+https://developers.google.cn/machine-learning/crash-course/classification/precision-and-recall  
 Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
 

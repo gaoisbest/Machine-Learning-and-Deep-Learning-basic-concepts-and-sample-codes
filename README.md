@@ -75,8 +75,8 @@ Multi-class confusion matrix: element at row *i* and column *j* denotes the true
 
 **Precision** = TP / (TP + FP) What's the correct proportion of predicted positive ?  
 **Recall** = TP / (TP + FN) What's the pick up proportion of all positive obsverations ?  
-**F1** = 2 * Precision * Recall / (Precision + Recall)  
-Increase **Precision** indicates increase classification threshold; meanwhile, increase **Recall** indicates decrease classification threshold.  
+**F1** = 2 * Precision * Recall / (Precision + Recall).  
+Increase **Precision** indicates increase classification threshold; meanwhile, increase **Recall** indicates decrease classification threshold. 
 
 **False Positive** = FP / (FP + TN)  
 **True Positive** = TP / (TP + FN), i.e., **Recall**.  
@@ -110,7 +110,8 @@ In general, when **TP < FP**, the accuracy will always increase when we change t
 Close to the **up left** point (TPR=1.0, FPR=0.0) indicates the model is better. On the diagonal line, TPR = FPR, which means the **random guess**.  
 
 
-**AUC (Area under the ROC curve)**:  
+**AUC (Area under the ROC curve)**: aggregate measure of performance across all possible classification thresholds.  
+One way of interpreting AUC is as the **probability** that the model ranks a random positive example more highly than a random negative example. [3]
 
 ### 3.3 BLEU
 

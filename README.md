@@ -293,6 +293,9 @@ References:
 
 
 ## 5. Nerual Networks
+### Definition
+- Neural networks essentially automatic learns **feature crosses**, which is necessary for solving **non-linear** problems.
+- Each neuron is **f (weighted average of last layers' outputs)**, where `f` is **non-linear** function.
 ### Back propagation
 **Chain rule with memorization.**
 

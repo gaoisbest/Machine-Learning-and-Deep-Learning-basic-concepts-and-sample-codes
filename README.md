@@ -166,7 +166,7 @@ Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
 
 ## 2. L1 and L2 regularization
-#### Why are the shape of the L1 norm and L2 norm diamond like and circle like respectively? 
+#### Why are the shape of the L1 norm and L2 norm (aka, weight decay) diamond like and circle like respectively? 
 See reference [1].
 
 #### Why does L1 lead to sparse weights and L2 lead to small distributed weights?  

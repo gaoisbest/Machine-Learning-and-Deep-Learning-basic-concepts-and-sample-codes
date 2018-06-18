@@ -328,6 +328,9 @@ Mini-batch gradient descent
 One hidden layer with two neurons. The activation in above image is step function.
 
 ## 6. Tips of training DL models
-### 6.1: Validate the correctness of public repository
-Input 10 training samples, shut down the dropout and L2 regularizations, predict the 10 testing samples (same as the 10 training samples). If the cost is approximately 0, 
+### 6.1 Validate the correctness of public repository
+Input 10 training samples, shut down the dropout and L2 regularizations, predict the 10 testing samples (same as the 10 training samples). If the cost is approximately 0, the codes may not have mistakes
+### 6.2 How to set mini-batch size
+- If the whole training set size is less than 2,000, then use the whole training data
+- Otherwize, 64, 128, 256, 512 is common choices
 

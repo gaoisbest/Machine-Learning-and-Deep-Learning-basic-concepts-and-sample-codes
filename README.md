@@ -1,7 +1,21 @@
+# Outline
+- Introduction
+- Machine learning
+    - Feature engineering
+    - Loss function
+    - Evaluation metrics
+    - Sample projects
+    - Classical questions
+- Deep learning
+    - Optimization algorithms
+    - Exploding/vanishing gradients
+    - Batch Normalization
+    - Nerual Networks
+    - Tips of training DL models
+
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
-
-# Basic concepts
+# Machine learning
 ## 1. Feature engineering
 ### 1.1 Definition
 Process of extracting **feature vector** (i.e., contain numerical values) from raw data. It will roughly cost 75% times of whole process.
@@ -29,15 +43,6 @@ Process of extracting **feature vector** (i.e., contain numerical values) from r
 - Outlier
 	- Log
 	- Clipping
-
-
-Classical problem solutions (to be done):
-- [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
-- [Missing data]()
-- [Feature selection]()
-- ...
-
-	
 ## 2. Loss function
 ### 2.1 Categories
 - Mean square error (MSE)
@@ -120,8 +125,7 @@ References:
 [2] https://www.zhihu.com/question/30643044  
 [3] https://developers.google.cn/machine-learning/crash-course/classification/true-false-positive-negative  
 
-
-# Sample projects
+## 4. Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic%20regression.png)
@@ -130,9 +134,8 @@ References:
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Neural%20network.png)
 
-
-# Classical questions
-## 1. Why is logistic regression a generalized linear model ? 
+## 5. Classical questions
+## 5.1 Why is logistic regression a generalized linear model ? 
 Suppose that the logistic regression, `p = sigmoid(z)`:
 - The input `z`, i.e., `z = WX + b`, is a linear function of x.
 - Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of parameters `W`.
@@ -153,7 +156,6 @@ Precision = 0.88, Recall = 0.64.
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Precision_Recall_3.png)  
 Precision = 0.75, Recall = 0.82.  
 
-
 References:  
 https://www.quora.com/Why-is-logistic-regression-considered-a-linear-model  
 https://stats.stackexchange.com/questions/93569/why-is-logistic-regression-a-linear-classifier  
@@ -165,11 +167,11 @@ https://developers.google.cn/machine-learning/crash-course/classification/precis
 Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
 
-## 2. L1 and L2 regularization
-#### Why are the shape of the L1 norm and L2 norm (aka, weight decay) diamond like and circle like respectively? 
+## 5.2 L1 and L2 regularization
+### Why are the shape of the L1 norm and L2 norm (aka, weight decay) diamond like and circle like respectively? 
 See reference [1].
 
-#### Why does L1 lead to sparse weights and L2 lead to small distributed weights?  
+### Why does L1 lead to sparse weights and L2 lead to small distributed weights?  
 L0 norm is the number of non-zero elements, which has sparse property.  
 **L1 norm is the best convex approximation to L0 norm**. We can view L1 norm as a compromise between the L0 and L2 norms, inheriting the sparsity-inducing property from the former and convexity from the latter [2].  
 The L1 norm despite being convex, is **not everywhere differentiable** (unlike the L2 norm) [2], see picture from [3].  
@@ -178,14 +180,14 @@ Traditional gradient descent cannot be used to optimize L1 regularized models, t
 L1 regularization helps performing **feature selection**.  
 Since **squaring a number punishes large values more than it punishes small values** [2], L2 regularization leads to small distributed weights.
 
-#### L1 or L2, which one is perfered in differenct scenario?
+### L1 or L2, which one is perfered in differenct scenario?
 Both are used for solve over-fitting.  
 In Bayesian view:  
 L1 regularization is equivalent to MAP estimation using **Laplacian prior**.  
 L2 regularization is equivalent to MAP estimation using **Gaussian prior**.  
 Always try L2 regularization first, since it will give you the best result [2].
 
-#### L2 regularization Implementation
+### L2 regularization Implementation
   - forward propagation computes cost
 	```
 	# suppose that there are sigler hidden layer neural network
@@ -205,11 +207,11 @@ Always try L2 regularization first, since it will give you the best result [2].
     dW1 = 1./m * np.dot(dZ1, X.T) + W1 * lambd / m
 	db1 = 1./m * np.sum(dZ1, axis=1, keepdims = True)
 	```
-#### Lasso (with L1 regularization) and ridge regression (with L2 regularization).  
+### Lasso (with L1 regularization) and ridge regression (with L2 regularization).  
 The following picture is from [2].  
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Andrew_Ng_images/Class_2_week_1/Lasso_and_ridge.png)  
 
-#### Elastic net (combine L1 and L2)  
+### Elastic net (combine L1 and L2)  
 ```
 # from http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html
 1 / (2 * n_samples) * ||y - Xw||^2_2 + alpha * l1_ratio * ||w||_1 + 0.5 * alpha * (1 - l1_ratio) * ||w||^2_2
@@ -221,8 +223,30 @@ References:
 [3] https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models  
 [4] https://feature.engineering/regularization/  
 
-## 3. Exploding/vanishing gradients  
-#### Vanishing gradients [1, 3]:
+Classical problem solutions (to be done):
+- [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
+- [Missing data]()
+- [Feature selection]()
+- ...
+
+# Deep learning
+## 1. Optimization algorithms
+### 1.1 Exponential weighted averages
+- All advanced optimization algorithms are based on **exponentially weighted averages** (`V_t = beta * V_t-1 + (1-beta) * theita_t`), which approximately averages `1/(1-beta)` days. An example, `V_0 = 0, V_1 = 0.9 * V_0 + 0.1 * theita_1, V_2 = 0.9 * V_1 + 0.1 * theita_2`, ..., therefore, `V_2 = 0.1 * theita_2 + (0.1 * 0.9) * theita_1`, the weights of `theita_x` is exponentially decay.  
+- At early steps, **bias correction** is used. i.e. `V_t = V_t / (1 - beta^t)`. If `t` is large, then `1 - beta^t` approximates `1`, bias correction does not work now.
+### 1.2 Momentum
+- `V_dw = beta * V_dw + (1-beta) * dw`
+- `w = w - alpha * V_dw`
+### 1.3 RMSprop (Root mean square prop)
+- `S_dw = beta * S_dw + (1-beta) * dw ** 2`
+- `w = w - alpha * dw / [S_dw^(1/2) + epsilon]`, where `** 2` is element-wise multiplication and `epslion=1e-8`.
+### 1.4 Adam (Adaptive moment estimation)
+- `V_dw = beta_1 * V_dw + (1-beta_1) * dw; S_dw = beta_2 * S_dw + (1-beta_2) * dw ** 2;`
+- `V_dw_corr = V_dw / (1-beta_1^t); S_dw_corr = S_dw / (1-beta_2^t)`
+- `w = w - alpha * V_dw_corr / [S_dw_corr^(1/2) + epsilon]`
+- `beta_1 = 0.9, beta_2 = 0.999, epsilon = 1e-8`
+## 2. Exploding/vanishing gradients  
+### 2.1 Vanishing gradients [1, 3]:
 - Results: early layers are **converged slower** than later layers. 
 - Reason: `sigmoid` and `tanh` activations suffer from vanishing gradients. But `ReLU` activation does not have this problem.
 - Solutions:
@@ -251,7 +275,7 @@ tf.contrib.layers.fully_connected(inputs, num_outputs, activation_fn=leaky_relu)
 ```
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Xavier_He_initialization.png)
 
-#### Exploding gradients [2, 3]:
+### 2.2 Exploding gradients [2, 3]:
 - Results: gradients and cost become `NaN`.
 - Reason: large weights and derivative of activation multiplication during back propagation. It is particularly occured in RNNs.
 - Solution: **gradients clipping**.
@@ -269,7 +293,7 @@ optimizer = tf.train.AdamOptimizer(learning_rate=1e-3)
 optimize = optimizer.apply_gradients(grads_and_vars=zip(clipped_gradients, variables), global_step=self.global_step)
 ```
 
-#### Why LSTM resistant to exploding and vanishing gradients?
+### 2.3 Why LSTM resistant to exploding and vanishing gradients?
 - If the forget gate is on and the input and output gates are off, it just passes the memory cell gradients through unmodified at each time step [4].
 - CEC (Constant Error Carrousel) mechanism with gate [7].
 
@@ -282,7 +306,7 @@ References:
 [6] https://www.zhihu.com/question/38102762  
 [7] https://www.zhihu.com/question/34878706
 
-## 4. Batch Normalization
+## 3. Batch Normalization
 - He initialization and ELU can reduce the vanishing gradients **at the begining of training**.
 - Address the vanishing gradients during **training**.
 - **Batch** means evaluating the mean and standard deviation of the inputs over current mini-batch.
@@ -291,24 +315,23 @@ References:
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Batch_normalization_formula.png)  
 
-
-## 5. Nerual Networks
-### Definition
+## 4. Nerual Networks
+### 4.1 Definition
 - Neural networks essentially automatic learns **feature crosses**, which is necessary for solving **non-linear** problems.
 - Each neuron is **f (weighted average of last layers' outputs)**, where `f` is **non-linear** function.
-### Back propagation
+### 4.2 Back propagation
 **Chain rule with memorization.**
 
-### How to choose the number of hidden layers ? 
+### 4.3 How to choose the number of hidden layers ? 
 DNN could extract features layer by layer, and it has a **hierarchical architecture**. For many problems, **one or two hidden layers** will works fine. For complex problem, you can gradually increase the number of hidden layers, until overfitting occurs.
 
-### How to set the number of neurons per hidden layer ? 
+### 4.4 How to set the number of neurons per hidden layer ? 
 A common strategy is to size the number of neurons to form a funnel (i.e., **deeper layer has fewer neruons**). The analogy is many low-level features are coalesce into fewer high-level features.  
 A simple approach is to pick a complex model with early stopping to prevent from overfitting.  
 
 References:  
 [1] Hands on machine learning with Scikit-Learn and TensorFlow p271
-### How does batch size influence training speed and model accuracy ?
+### 4.5 How does batch size influence training speed and model accuracy ?
 Batch gradient descent
 - slow
 - may converge to local minimum, and yield worse performance
@@ -322,15 +345,16 @@ Mini-batch gradient descent
 - fast as SGD (matrix operation with GPU)
 - escape from local minimum and more stable
 
-### XOR solution
+How to set mini-batch size
+- If the whole training set size is less than 2,000, then use the whole training data
+- Otherwize, 64, 128, 256, 512 is common choices
+
+### 4.6 XOR solution
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/XOR.png)  
 
 One hidden layer with two neurons. The activation in above image is step function.
 
-## 6. Tips of training DL models
-### 6.1 Validate the correctness of public repository
+## 5. Tips of training DL models
+### 5.1 Validate the correctness of public repository
 Input 10 training samples, shut down the dropout and L2 regularizations, predict the 10 testing samples (same as the 10 training samples). If the cost is approximately 0, the codes may not have mistakes
-### 6.2 How to set mini-batch size
-- If the whole training set size is less than 2,000, then use the whole training data
-- Otherwize, 64, 128, 256, 512 is common choices
 

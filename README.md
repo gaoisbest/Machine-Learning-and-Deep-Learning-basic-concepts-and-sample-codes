@@ -12,7 +12,7 @@
     - [Batch Normalization](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-batch-normalization)
     - [Nerual Networks](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-nerual-networks)
     - [Tips of training DL models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-tips-of-training-dl-models)
-
+    - Regularization
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
 # Machine learning
@@ -167,62 +167,6 @@ https://developers.google.cn/machine-learning/crash-course/classification/precis
 Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
 
-## 5.2 L1 and L2 regularization
-### Why are the shape of the L1 norm and L2 norm (aka, weight decay) diamond like and circle like respectively? 
-See reference [1].
-
-### Why does L1 lead to sparse weights and L2 lead to small distributed weights?  
-L0 norm is the number of non-zero elements, which has sparse property.  
-**L1 norm is the best convex approximation to L0 norm**. We can view L1 norm as a compromise between the L0 and L2 norms, inheriting the sparsity-inducing property from the former and convexity from the latter [2].  
-The L1 norm despite being convex, is **not everywhere differentiable** (unlike the L2 norm) [2], see picture from [3].  
-![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Andrew_Ng_images/Class_2_week_1/L1_derivative.png)  
-Traditional gradient descent cannot be used to optimize L1 regularized models, therefore more advanced techniques like **proximal gradient** or primal-dual methods like ADMM are required [2].  
-L1 regularization helps performing **feature selection**.  
-Since **squaring a number punishes large values more than it punishes small values** [2], L2 regularization leads to small distributed weights.
-
-### L1 or L2, which one is perfered in differenct scenario?
-Both are used for solve over-fitting.  
-In Bayesian view:  
-L1 regularization is equivalent to MAP estimation using **Laplacian prior**.  
-L2 regularization is equivalent to MAP estimation using **Gaussian prior**.  
-Always try L2 regularization first, since it will give you the best result [2].
-
-### L2 regularization Implementation
-  - forward propagation computes cost
-	```
-	# suppose that there are sigler hidden layer neural network
-	# W1 and W2 are parameters for input X and hidden neurons
-	# Since we add regularization term, the cost cannot be zero at anytime.
-	L2_regularization_cost = 1.0 / m * lambd / 2.0 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
-	cost = cross_entropy_cost + L2_regularization_cost
-	```
-  - back propagation comptutes gradients
-	```
-	dZ2 = A2 - Y # the cross_entropy loss
-    dW2 = 1./m * np.dot(dZ2, A1.T) + W2 * lambd / m
-    db2 = 1./m * np.sum(dZ2, axis=1, keepdims = True)
-    
-    dA1 = np.dot(W2.T, dZ2)
-    dZ1 = np.multiply(dA1, np.int64(A1 > 0)) # relu activation
-    dW1 = 1./m * np.dot(dZ1, X.T) + W1 * lambd / m
-	db1 = 1./m * np.sum(dZ1, axis=1, keepdims = True)
-	```
-### Lasso (with L1 regularization) and ridge regression (with L2 regularization).  
-The following picture is from [2].  
-![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Andrew_Ng_images/Class_2_week_1/Lasso_and_ridge.png)  
-
-### Elastic net (combine L1 and L2)  
-```
-# from http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html
-1 / (2 * n_samples) * ||y - Xw||^2_2 + alpha * l1_ratio * ||w||_1 + 0.5 * alpha * (1 - l1_ratio) * ||w||^2_2
-```
-
-References:  
-[1] https://www.quora.com/Why-does-an-L1-norm-unit-ball-have-diamond-shaped-geometry#!n=12  
-[2] https://www.quora.com/What-is-the-difference-between-L1-and-L2-regularization-How-does-it-solve-the-problem-of-overfitting-Which-regularizer-to-use-and-when  
-[3] https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models  
-[4] https://feature.engineering/regularization/  
-
 Classical problem solutions (to be done):
 - [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
 - [Missing data]()
@@ -358,3 +302,72 @@ One hidden layer with two neurons. The activation in above image is step functio
 ### 5.1 Validate the correctness of public repository
 Input 10 training samples, shut down the dropout and L2 regularizations, predict the 10 testing samples (same as the 10 training samples). If the cost is approximately 0, the codes may not have mistakes
 
+## 6. Regularization
+### 6.1 L1 and L2
+#### Why are the shape of the L1 norm and L2 norm (aka, weight decay) diamond like and circle like respectively? 
+See reference [1].
+
+#### Why does L1 lead to sparse weights and L2 lead to small distributed weights?  
+L0 norm is the number of non-zero elements, which has sparse property.  
+**L1 norm is the best convex approximation to L0 norm**. We can view L1 norm as a compromise between the L0 and L2 norms, inheriting the sparsity-inducing property from the former and convexity from the latter [2].  
+The L1 norm despite being convex, is **not everywhere differentiable** (unlike the L2 norm) [2], see picture from [3].  
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Andrew_Ng_images/Class_2_week_1/L1_derivative.png)  
+Traditional gradient descent cannot be used to optimize L1 regularized models, therefore more advanced techniques like **proximal gradient** or primal-dual methods like ADMM are required [2].  
+L1 regularization helps performing **feature selection**.  
+Since **squaring a number punishes large values more than it punishes small values** [2], L2 regularization leads to small distributed weights.
+
+#### L1 or L2, which one is perfered in differenct scenario?
+Both are used for solve over-fitting.  
+In Bayesian view:  
+L1 regularization is equivalent to MAP estimation using **Laplacian prior**.  
+L2 regularization is equivalent to MAP estimation using **Gaussian prior**.  
+Always try L2 regularization first, since it will give you the best result [2].
+
+#### L2 regularization Implementation
+  - forward propagation computes cost
+	```
+	# suppose that there are sigler hidden layer neural network
+	# W1 and W2 are parameters for input X and hidden neurons
+	# Since we add regularization term, the cost cannot be zero at anytime.
+	L2_regularization_cost = 1.0 / m * lambd / 2.0 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
+	cost = cross_entropy_cost + L2_regularization_cost
+	```
+  - back propagation comptutes gradients
+	```
+	dZ2 = A2 - Y # the cross_entropy loss
+    dW2 = 1./m * np.dot(dZ2, A1.T) + W2 * lambd / m
+    db2 = 1./m * np.sum(dZ2, axis=1, keepdims = True)
+    
+    dA1 = np.dot(W2.T, dZ2)
+    dZ1 = np.multiply(dA1, np.int64(A1 > 0)) # relu activation
+    dW1 = 1./m * np.dot(dZ1, X.T) + W1 * lambd / m
+	db1 = 1./m * np.sum(dZ1, axis=1, keepdims = True)
+	```
+#### Lasso (with L1 regularization) and ridge regression (with L2 regularization).  
+The following picture is from [2].  
+![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Andrew_Ng_images/Class_2_week_1/Lasso_and_ridge.png)  
+
+#### Elastic net (combine L1 and L2)  
+```
+# from http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html
+1 / (2 * n_samples) * ||y - Xw||^2_2 + alpha * l1_ratio * ||w||_1 + 0.5 * alpha * (1 - l1_ratio) * ||w||^2_2
+```
+
+References:  
+[1] https://www.quora.com/Why-does-an-L1-norm-unit-ball-have-diamond-shaped-geometry#!n=12  
+[2] https://www.quora.com/What-is-the-difference-between-L1-and-L2-regularization-How-does-it-solve-the-problem-of-overfitting-Which-regularizer-to-use-and-when  
+[3] https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models  
+[4] https://feature.engineering/regularization/  
+
+### 6.2 Dropout
+- Intuition: can't rely on any one feature.
+- At test time, **do not use** dropout.
+- Implementation:
+```
+d1 = np.random.rand(shape[0], shape[1]) < keep_prob
+a1 = np.multiply(a1, d1)
+a1 /= keep_prob # inverted dropout
+```
+### 6.3 Other technicals
+- Data augmentation: horizon flip
+- Early stopping

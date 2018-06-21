@@ -189,6 +189,14 @@ Classical problem solutions (to be done):
 - `V_dw_corr = V_dw / (1-beta_1^t); S_dw_corr = S_dw / (1-beta_2^t)`
 - `w = w - alpha * V_dw_corr / [S_dw_corr^(1/2) + epsilon]`
 - `beta_1 = 0.9, beta_2 = 0.999, epsilon = 1e-8`
+### 1.5 Learning rate decay
+- Decay the learning rate after each epoch
+- `learning_rate / (1.0 + num_epoch * decay_rate)` 
+- Exponential decay: `learning_rate * 0.95^num_epoch`
+### 1.6 Saddle points
+- First-order derivative is **zero**.
+- For one dimension, the saddle point is local maximum, but for another dimension, the saddle point is local minimum.
+
 ## 2. Exploding/vanishing gradients  
 ### 2.1 Vanishing gradients [1, 3]:
 - Results: early layers are **converged slower** than later layers. 
@@ -301,6 +309,13 @@ One hidden layer with two neurons. The activation in above image is step functio
 ## 5. Tips of training DL models
 ### 5.1 Validate the correctness of public repository
 Input 10 training samples, shut down the dropout and L2 regularizations, predict the 10 testing samples (same as the 10 training samples). If the cost is approximately 0, the codes may not have mistakes
+### 5.2 Hyperparameter tuning
+- Don't use grid search (useful when the number of parameters is small), try **random values**. Say parameters `w1` and `w2`, grid search will loop `w1 = 5` and `w2 = 1, 2, 3, 4, 5`, all of the five models have same `w1`. But with random values, five models can have different `w1`
+- **Coarse to fine** strategy
+- **Log scale** for learning rate
+    - Step 1: suppose that we want to choose learning rate from range `[0.0001, ..., 1]`
+    - Step 2: we take `log scale` (with `base 10`), then the range becomes `[-4, 0]`
+    - Step 3: uniform choose one paramter with `r = -4 * np.random.randn(), alpha = 10^r`
 
 ## 6. Regularization
 ### 6.1 L1 and L2
@@ -369,5 +384,5 @@ a1 = np.multiply(a1, d1)
 a1 /= keep_prob # inverted dropout
 ```
 ### 6.3 Other technicals
-- Data augmentation: horizon flip
+- Data augmentation: horizontally flip
 - Early stopping

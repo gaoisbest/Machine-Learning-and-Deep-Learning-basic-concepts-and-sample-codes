@@ -12,7 +12,8 @@
     - [Batch Normalization](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-batch-normalization)
     - [Nerual Networks](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-nerual-networks)
     - [Tips of training DL models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-tips-of-training-dl-models)
-    - Regularization
+    - [Regularization](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#6-regularization)
+    
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
 # Machine learning
@@ -205,9 +206,7 @@ Classical problem solutions (to be done):
 	- **Activation function**.`ReLU` or `Leaky ReLU`. `ReLU` can have **dying** states (caused by i.e., large learning rate or large negative bias), whose both outputs and gradients are zero. `Leaky ReLU` solves this problem. Variants of `Leaky ReLU` is `randomized leaky ReLU (RReLU)`, `parametric leaky ReLU (PReLU)`. `exponential linear unit (ELU)`.  
 	**ELU > Leaky ReLU > ReLU > tanh > sigmoid** [5].
 	- **Weights initialization**. i.e., `Xavier` initialization (**Two goal**: the **outputs variance** of each layer is equal to the **inputs variance**; the **gradients variance** before and after flowing through a layer is equal) for `sigmoid` and `tanh`, `He` initialization for `ReLU` and `Leaky ReLU`. 
-	- **Batch Normalization**. Address vanishing or exploding gradients problem during training [6]. For more detailed, see 4. Batch Normalization.
-		- Zero-centering + normalizing + scaling + shifting
-		- At test time, use the whole training set's mean and standard deviation.
+	- **Batch Normalization**. Address vanishing or exploding gradients problem during training [6].
 - Implementation [5]
 ```
 # xavier
@@ -259,13 +258,15 @@ References:
 [7] https://www.zhihu.com/question/34878706
 
 ## 3. Batch Normalization
-- He initialization and ELU can reduce the vanishing gradients **at the begining of training**.
-- Address the vanishing gradients during **training**.
-- **Batch** means evaluating the mean and standard deviation of the inputs over current mini-batch.
-- At test time, use the whole training set's mean and standard deviation.
-- BN can reduce vanishing gradients problem, less sensitive to the weight initialization, reduce the need for other regularization techniques (such as dropout).
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Batch_normalization_formula.png)  
+
+- **Covariate shift** means data distribution changes, BN reduces the distribution of neurons shifts. No matter how `z1` and `z2` changes, BN keeps there mean and std same.
+- The dimension of `beta` and `gamma` is `(n^l, 1)`, because BN is used to scale the mean and variance of the input `Z` of each neuron.
+- He initialization and ELU can reduce the vanishing gradients **at the begining of training**. BN can address the **vanishing gradients** during **training**.
+- **Batch** means evaluating the mean and standard deviation of the inputs over current mini-batch.
+- BN can reduce vanishing gradients problem, less sensitive to the weight initialization, reduce the need for other regularization techniques (such as dropout).
+- At **test time**, use the whole training set's mean and standard deviation, i.e., **exponential weighted averages** of each mini-batch's `beta` and `gamma`.
 
 ## 4. Nerual Networks
 ### 4.1 Definition

@@ -136,20 +136,20 @@ References:
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Neural%20network.png)
 
 ## 5. Classical questions
-## 5.1 Why is logistic regression a generalized linear model ? 
+### 5.1 Why is logistic regression a generalized linear model ? 
 Suppose that the logistic regression, `p = sigmoid(z)`:
 - The input `z`, i.e., `z = WX + b`, is a linear function of x.
 - Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of parameters `W`.
 - **Decision boundary**, i.e., `WX = 0`, is linear. This does not mean LR can only handle linear-separable data. Actually, we can convert low-dimensional data to high-dimensional data with the help of **feature mapping**. And the data are linear-separable in the high-dimensional space.
 - Both logistic regression and softmax regression can be modeled by exponential family distribution.
 
-### What's the difference between linear and non-linear regression ? 
+#### What's the difference between linear and non-linear regression ? 
 - It is **wrong** that **linear regression model generates straight lines and nonlinear regression model curvature**. Actually, both linear and non-linear models can fit curves.  
 - Linear means **linear in parameters `W` but not in `X`**. For example, both functions `f_1 = w_1x_1 + w_2x_2 + b` and `f_2 = w_1x_1 + w_2x_2 + w_3x_2^{2} + b` are linear functions. The most common operation is adding **polynomial terms** (i.e., quadratic term or cubic term) in linear model.
 - Example of non-linear function `f_3 = w_1x^{w_1}`
 - **`log` transform** can be used to convert nonlinear function `y=e^{b}x_1^{w_1}x_2^{w_2}` to linear function `lny = b + w_1lnx_1 + w_2lnx_2`
 
-### The influence of classification threshold
+#### The influence of classification threshold
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Precision_Recall_1.png)  
 Precision = 0.8, Recall = 0.73.  
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Precision_Recall_2.png)  
@@ -167,6 +167,12 @@ http://statisticsbyjim.com/regression/curve-fitting-linear-nonlinear-regression/
 https://developers.google.cn/machine-learning/crash-course/classification/precision-and-recall  
 Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
+
+
+### 5.2 How to prepare train, dev and test dataset ? 
+- Principle: make sure that the distribution of **validation set** and **test set** are **same**.
+- Train and dev/test may from slightly different distribution.
+- [Learning curve](http://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html) shows the **training and validation score** along the increases of **training examples**.
 
 Classical problem solutions (to be done):
 - [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
@@ -317,6 +323,9 @@ Input 10 training samples, shut down the dropout and L2 regularizations, predict
     - Step 1: suppose that we want to choose learning rate from range `[0.0001, ..., 1]`
     - Step 2: we take `log scale` (with `base 10`), then the range becomes `[-4, 0]`
     - Step 3: uniform choose one paramter with `r = -4 * np.random.randn(), alpha = 10^r`
+### 5.3 Error analysis
+- Manually check say 100 mis-classified validaton samples, and count their error types.
+
 
 ## 6. Regularization
 ### 6.1 L1 and L2

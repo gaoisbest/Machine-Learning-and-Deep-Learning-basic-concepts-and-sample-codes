@@ -396,3 +396,23 @@ a1 /= keep_prob # inverted dropout
 ### 6.3 Other technicals
 - Data augmentation: horizontally flip
 - Early stopping
+
+## 7. CNNs
+### 7.1 Filter size
+- Usually `odd`, i.e., `3*3`, `5*5`, which has a central point
+- Filter kernel: `width * height * number of channels`
+
+### 7.2 Padding
+- Role
+   - Prevent image size ** shrinking** after convolution
+   - Put more emphasis on the corner pixel (i.e., top-left, top-right, down-left, down-right), otherwise, the corner pixel will be convolved once
+   
+- Types
+   - `Valid`: No padding
+   - `Same`: output size is the same as the input size, `p = (filter_size - 1) / 2`
+
+### 7.3 Stride
+- `stride=2` means stride both on **horizontal** and **vertical** directions
+- Image size after convolution, padding and stride
+   - Horizontal direction: `round([(horizontal image size + 2 * padding - filter_size) / stride] + 1)`
+   - Vertical direction: `round([(vertical image size + 2 * padding - filter_size) / stride] + 1)`

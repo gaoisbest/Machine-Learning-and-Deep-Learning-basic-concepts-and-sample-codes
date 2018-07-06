@@ -13,6 +13,7 @@
     - [Nerual Networks](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-nerual-networks)
     - [Tips of training DL models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-tips-of-training-dl-models)
     - [Regularization](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#6-regularization)
+    - [CNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#7-cnns)
     
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
@@ -126,7 +127,10 @@ References:
 [2] https://www.zhihu.com/question/30643044  
 [3] https://developers.google.cn/machine-learning/crash-course/classification/true-false-positive-negative  
 
-## 4. Sample projects
+## 4. Error analysis
+- Manually check say 100 mis-classified validaton samples, and count their error types.
+
+## 5. Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic%20regression.png)
@@ -135,8 +139,8 @@ References:
 
 ![](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Neural%20network/Neural%20network.png)
 
-## 5. Classical questions
-### 5.1 Why is logistic regression a generalized linear model ? 
+## 6. Classical questions
+### 6.1 Why is logistic regression a generalized linear model ? 
 Suppose that the logistic regression, `p = sigmoid(z)`:
 - The input `z`, i.e., `z = WX + b`, is a linear function of x.
 - Log-odds, i.e., `log (p/(1-p)) = WX`, is a linear function of parameters `W`.
@@ -169,10 +173,12 @@ Logistic regression application in Meituan:  
 https://tech.meituan.com/intro_to_logistic_regression.html
 
 
-### 5.2 How to prepare train, dev and test dataset ? 
+### 6.2 How to prepare train, dev and test dataset ? 
 - Principle: make sure that the distribution of **validation set** and **test set** are **same**.
 - Train and dev/test may from slightly different distribution.
 - [Learning curve](http://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html) shows the **training and validation score** along the increases of **training examples**.
+
+
 
 Classical problem solutions (to be done):
 - [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
@@ -323,8 +329,6 @@ Input 10 training samples, shut down the dropout and L2 regularizations, predict
     - Step 1: suppose that we want to choose learning rate from range `[0.0001, ..., 1]`
     - Step 2: we take `log scale` (with `base 10`), then the range becomes `[-4, 0]`
     - Step 3: uniform choose one paramter with `r = -4 * np.random.randn(), alpha = 10^r`
-### 5.3 Error analysis
-- Manually check say 100 mis-classified validaton samples, and count their error types.
 
 
 ## 6. Regularization
@@ -398,21 +402,37 @@ a1 /= keep_prob # inverted dropout
 - Early stopping
 
 ## 7. CNNs
-### 7.1 Filter size
+### 7.1 Convolution
+- Parameter sharing: feature detector that's useful in one part of the image is probably useful in another part of the image
+- Sparsity of connection
+- Translation invariance
+#### 7.1.1 Filter size
 - Usually `odd`, i.e., `3*3`, `5*5`, which has a central point
 - Filter kernel: `width * height * number of channels`
-
-### 7.2 Padding
+- Each filter has a `bias`
+- After convolution, we should apply non-linearity, i.e., `relu(convolution + bias)`
+#### 7.1.2 Padding
 - Role
    - Prevent image size ** shrinking** after convolution
    - Put more emphasis on the corner pixel (i.e., top-left, top-right, down-left, down-right), otherwise, the corner pixel will be convolved once
-   
 - Types
    - `Valid`: No padding
    - `Same`: output size is the same as the input size, `p = (filter_size - 1) / 2`
-
-### 7.3 Stride
+#### 7.1.3 Stride
 - `stride=2` means stride both on **horizontal** and **vertical** directions
 - Image size after convolution, padding and stride
    - Horizontal direction: `round([(horizontal image size + 2 * padding - filter_size) / stride] + 1)`
    - Vertical direction: `round([(vertical image size + 2 * padding - filter_size) / stride] + 1)`
+### 7.2 Pooling
+- Hyperparameters: filter size and stride
+- Pooling layer has but does **not** have any **learnable parameters**
+- Dose not change the number of channels
+
+## 8. RNNs
+
+## 9. Types
+### 9.1 Transfer learning
+- If your data size is small, just retrain the last layer; if your data size is large, you can retrain last two or three or all layers.
+- Task A and task B share the same low level features, so transfer learning works.
+### 9.2 Multi-task learning
+- A set of tasks share the same low level features

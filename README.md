@@ -2,6 +2,10 @@
 - [Introduction](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#introduction)
 - [Machine learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#machine-learning)
     - [Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-feature-engineering)
+    	- [Definition](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#11-definition)
+        - [Categories](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#12-categories)
+        - [Qualities of good features](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#13-qualities-of-good-features)
+        - [Feature cleaning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#14-feature-cleaning)
     - [Loss function](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-loss-function)
     - [Evaluation metrics](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-evaluation-metrics)
     - [Sample projects](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-sample-projects)
@@ -14,6 +18,8 @@
     - [Tips of training DL models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-tips-of-training-dl-models)
     - [Regularization](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#6-regularization)
     - [CNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#7-cnns)
+    - [RNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#8-rnns)
+    - [Types](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#9-types)
     
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
@@ -432,7 +438,10 @@ a1 /= keep_prob # inverted dropout
 
 ## 9. Types
 ### 9.1 Transfer learning
-- If your data size is small, just retrain the last layer; if your data size is large, you can retrain last two or three or all layers.
-- Task A and task B share the same low level features, so transfer learning works.
+- If your data size is small, just retrain the last layer; if your data size is large, you can retrain last two or three or all layers
+- Task A and task B share the same low level features, so transfer learning works
 ### 9.2 Multi-task learning
 - A set of tasks share the same low level features
+### 9.3 End-to-end learning
+- Needs large amount of data
+

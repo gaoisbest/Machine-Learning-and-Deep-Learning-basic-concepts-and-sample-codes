@@ -285,6 +285,7 @@ References:
 - **Batch** means evaluating the mean and standard deviation of the inputs over current mini-batch.
 - BN can reduce vanishing gradients problem, less sensitive to the weight initialization, reduce the need for other regularization techniques (such as dropout).
 - At **test time**, use the whole training set's mean and standard deviation, i.e., **exponential weighted averages** of each mini-batch's `beta` and `gamma`.
+- `bias=False` 
 
 ## 4. Nerual Networks
 ### 4.1 Definition
@@ -429,10 +430,27 @@ a1 /= keep_prob # inverted dropout
 - Image size after convolution, padding and stride
    - Horizontal direction: `round([(horizontal image size + 2 * padding - filter_size) / stride] + 1)`
    - Vertical direction: `round([(vertical image size + 2 * padding - filter_size) / stride] + 1)`
+
 ### 7.2 Pooling
 - Hyperparameters: filter size and stride
 - Pooling layer has but does **not** have any **learnable parameters**
 - Dose not change the number of channels
+
+### 7.3 AlexNet
+- **Local Response Normalization (LRN)**: across whole channels
+
+### 7.4 VGG16
+- Fixed convolution filter size (3 * 3, stride=1) and pooling size (2 * 2, stride=2)
+- VGG16 almost have same performance compared with VGG19
+### 7.5 ResNet
+- **Residual block**: `a^(l+2) = g(z^(l+2) + a^(l))`
+- In extremely scenario with strong regularization, `z^(l+2)` equals `0`, and `a^(l+2) = g(0 + a^(l))`, it turns out that **the identity function is eary to learn for residual block**.
+- Can conquer gradients vanishing problem, [why ResNet works ?]()
+### 7.6 GoogLeNet
+#### 7.6.1 Inception module
+- **1 * 1 CONV** + **1 * 1 CONV -> 3 * 3 CONV** + **1 * 1 CONV -> 5 * 5 CONV** + **MAXPOOL 3 * 3, stride=1, same -> 1 * 1 CONV**
+#### 7.6.2 1 * 1 convolution
+- Work as a **bottleneck layer** for reducing computational cost
 
 ## 8. RNNs
 
@@ -440,6 +458,11 @@ a1 /= keep_prob # inverted dropout
 ### 9.1 Transfer learning
 - If your data size is small, just retrain the last layer; if your data size is large, you can retrain last two or three or all layers
 - Task A and task B share the same low level features, so transfer learning works
+- You can preprocess the input images with frozen layer and save them to disk.
+- **Data augmentation methods**
+   - Mirroring
+   - Random cropping
+   - Color shifting: PCA
 ### 9.2 Multi-task learning
 - A set of tasks share the same low level features
 ### 9.3 End-to-end learning

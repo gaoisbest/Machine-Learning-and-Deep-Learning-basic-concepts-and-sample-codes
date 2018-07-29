@@ -342,7 +342,7 @@ At each step, update the parameters by their moving average.
 References:  
 [1] [Use it in tensorflow](http://ruishu.io/2017/11/22/ema/)  
 [2] [example](https://stackoverflow.com/questions/45206910/tensorflow-exponential-moving-average)
-
+### 5.5 dynamic batching
 
 ## 6. Regularization
 ### 6.1 L1 and L2

@@ -336,6 +336,12 @@ Input 10 training samples, shut down the dropout and L2 regularizations, predict
     - Step 1: suppose that we want to choose learning rate from range `[0.0001, ..., 1]`
     - Step 2: we take `log scale` (with `base 10`), then the range becomes `[-4, 0]`
     - Step 3: uniform choose one paramter with `r = -4 * np.random.randn(), alpha = 10^r`
+### 5.3 Learning rate decay
+### 5.4 Update parameters by moving average
+At each step, update the parameters by their moving average.  
+References:  
+[1] [Use it in tensorflow](http://ruishu.io/2017/11/22/ema/)  
+[2] [example](https://stackoverflow.com/questions/45206910/tensorflow-exponential-moving-average)
 
 
 ## 6. Regularization

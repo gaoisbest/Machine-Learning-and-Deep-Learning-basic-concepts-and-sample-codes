@@ -51,6 +51,9 @@ Process of extracting **feature vector** (i.e., contain numerical values) from r
 - Outlier
 	- Log
 	- Clipping
+### 1.5 Tools
+- [Featuretools](https://www.featuretools.com/) for automatic feature engineering.
+
 ## 2. Loss function
 ### 2.1 Categories
 - Mean square error (MSE)

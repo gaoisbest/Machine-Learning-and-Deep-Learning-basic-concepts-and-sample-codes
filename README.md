@@ -20,7 +20,7 @@
     - [Regularization](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#6-regularization)
     - [CNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#7-cnns)
     - [RNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#8-rnns)
-    - [Types](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#9-types)
+    - [Learning Types](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#9-types)
     
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
@@ -464,7 +464,10 @@ a1 /= keep_prob # inverted dropout
 
 ## 8. RNNs
 
-## 9. Types
+### 8.1 LSTM
+See colah's great post on [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/).
+
+## 9. Learning Types
 ### 9.1 Transfer learning
 - If your data size is small, just retrain the last layer; if your data size is large, you can retrain last two or three or all layers
 - Task A and task B share the same low level features, so transfer learning works

@@ -61,14 +61,17 @@ Process of extracting **feature vector** (i.e., contain numerical values) from r
     - Linear regression
     - L2 loss
 - Logarithmic loss
-	- Logistic regression.
-	- **L(Y, f(x)) = -logf(x)**. [Fast.ai.wiki](http://wiki.fast.ai/index.php/Log_Loss) gives a detailed explanation of log loss.
+    - Logistic regression.
+    - **L(Y, f(x)) = -logf(x)**. [Fast.ai.wiki](http://wiki.fast.ai/index.php/Log_Loss) gives a detailed explanation of log loss.
 - Cross entropy
-	- shortcut of KL divergence, relative entropy
+    - shortcut of KL divergence, relative entropy
 - Exponential loss
-	- Adaboost
+    - Adaboost
 - Hinge loss
-	- SVM
+    - SVM
+- Cosine similarity
+    - Cosine curve (degree=0, cos_value=1; degree=90, cos_value=0; degree=180, cos_value=-1)
+    
 ### 2.2 Empirical risk minimization (ERM) and Structural risk minimization (SRM)
 **ERM = minimize loss**, it may leads to over-fitting phenomenon. For example, maximum likelihood estimation (MLE).  
 **SRM = ERM + regulairzation**. For example, maximum a posterior (MAP).  
@@ -466,6 +469,10 @@ a1 /= keep_prob # inverted dropout
 
 ### 8.1 LSTM
 See colah's great post on [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/).
+### 8.2 Transfering learning and word embeddings
+- 1. Learn word embeddings from large text corpus (Or download pre-trained embeddings online).
+- 2. Transfer embedding to new task with smaller training set.
+- 3. Optional: Continue to finetune the word embeddings with new data.
 
 ## 9. Learning Types
 ### 9.1 Transfer learning

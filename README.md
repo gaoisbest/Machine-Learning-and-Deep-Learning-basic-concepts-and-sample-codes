@@ -512,11 +512,11 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
         - At each time step, given the environment’s state, the agent selects an action to take. Then the environment is transitioned into a new state, and the agent is given a reward as a consequence of the previous action
     - **Goal**
         - The goal of an agent in an MDP is to maximize its cumulative rewards
-
-
-The goal of an agent in an MDP is to maximize its cumulative rewards.
-
-the return is exactly what's driving the agent to make the decisions it makes
-
+- Policy and Value function
+    - Policy: a function that maps a given state to probabilities of **selecting each possible action** from that state, let symbol **π** denotes the policy
+    - Value
+        - **State-value function v_π**: gives us the value of a state under π
+        - **Action-value function q_π**: gives us the value of an action under π. q_π is referred to as the **Q-function**, and the output from the function for any given state-action pair is called a **Q-value**. The letter 'Q' is used to represent the **quality** of taking a given action in a given state
+	
 ## References
 - http://deeplizard.com/learn/video/nyjbcRQ-uQ8

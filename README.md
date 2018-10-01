@@ -25,7 +25,9 @@
     - [RNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#8-rnns)
     - [Learning Types](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#9-types)
 
-- [Reinforcement Learning]()
+- [Reinforcement Learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#reinforcement-learning)
+    - [Definitions](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#definitions)
+
 
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 

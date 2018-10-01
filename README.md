@@ -24,7 +24,9 @@
     - [CNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#7-cnns)
     - [RNNs](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#8-rnns)
     - [Learning Types](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#9-types)
-    
+
+- [Reinforcement Learning]()
+
 # Introduction
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
 # Machine learning
@@ -495,3 +497,26 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
 ### 9.3 End-to-end learning
 - Needs large amount of data
 
+
+# Reinforcement Learning
+## Definitions
+- Reinforcement learning (RL) is an area of machine learning that focuses on how **agent** to **act** in an **environment** in order to maximize some given **reward**. 
+- Markov Decision Processes (MDPs)
+    - Components
+        - **Agent**: decision maker
+        - **Environment**
+        - **State**
+        - **Action**
+        - **Reward**
+    - **Sequential process**
+        - At each time step, given the environment’s state, the agent selects an action to take. Then the environment is transitioned into a new state, and the agent is given a reward as a consequence of the previous action
+    - **Goal**
+        - The goal of an agent in an MDP is to maximize its cumulative rewards
+
+
+The goal of an agent in an MDP is to maximize its cumulative rewards.
+
+the return is exactly what's driving the agent to make the decisions it makes
+
+## References
+- http://deeplizard.com/learn/video/nyjbcRQ-uQ8

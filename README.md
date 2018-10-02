@@ -502,7 +502,7 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
 
 # Reinforcement Learning
 ## Definitions
-- Reinforcement learning (RL) is an area of machine learning that focuses on how **agent** to **act** in an **environment** in order to maximize some given **reward**. 
+- Reinforcement learning (RL) is an area of machine learning that focuses on how **agent** to **act** in an **environment** in order to maximize some given **reward**
 - Markov Decision Processes (MDPs)
     - Components
         - **Agent**: decision maker
@@ -515,10 +515,14 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
     - **Goal**
         - The goal of an agent in an MDP is to maximize its cumulative rewards
 - Policy and Value function
-    - Policy: a function that maps a given state to probabilities of **selecting each possible action** from that state, let symbol **π** denotes the policy
-    - Value
-        - **State-value function v_π**: gives us the value of a state under π
-        - **Action-value function q_π**: gives us the value of an action under π. q_π is referred to as the **Q-function**, and the output from the function for any given state-action pair is called a **Q-value**. The letter 'Q' is used to represent the **quality** of taking a given action in a given state
+    - **Policy**
+        - A function that maps a given state to probabilities of **selecting each possible action** from that state, let symbol **`π`** denotes the policy
+    - **Value**
+        - **State-value function v_π**: gives us the value of a state under `π`
+        - **Action-value function q_π**: gives us the value of an action under `π`. `q_π` is referred to as the **Q-function**, and the output from the function for any given state-action pair is called a **Q-value**. The letter 'Q' is used to represent the **quality** of taking a given action in a given state
+    - **RL Goal**
+        - Reinforcement learning algorithms seek to **find a policy (i.e., optimal policy) that will yield more return** to the agent than all other policies
+- Bellman optimality equation for `q∗`
 	
 ## References
 - http://deeplizard.com/learn/video/nyjbcRQ-uQ8

@@ -30,7 +30,8 @@
 
 
 # Introduction
-Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. 
+Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. Material from [huaxiaozhuan](http://www.huaxiaozhuan.com/) provides good tutorials about commom machine learning algorithms.
+
 # Machine learning
 ## 1. Feature engineering
 ### 1.1 Definition

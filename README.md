@@ -34,7 +34,6 @@
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. Material from [huaxiaozhuan](http://www.huaxiaozhuan.com/) provides good tutorials about commom machine learning algorithms.
 
 # Machine learning
-Model complexity: VC dimension
 
 ## 1. Feature engineering
 ### 1.1 Definition
@@ -65,6 +64,9 @@ Process of extracting **feature vector** (i.e., contain numerical values) from r
 	- Clipping
 ### 1.5 Tools
 - [Featuretools](https://www.featuretools.com/) for automatic feature engineering.
+#### 1.6 Feature selection
+- Lasso with L1 regularization
+- Greedy select each feature at one time
 
 ## 2. Loss function
 ### 2.1 Categories
@@ -202,14 +204,27 @@ https://tech.meituan.com/intro_to_logistic_regression.html
 - Train and dev/test may from slightly different distribution.
 - [Learning curve](http://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html) shows the **training and validation score** along the increases of **training examples**.
 
+## 7. Models
+Model complexity: VC dimension
+### 7.1 Support vector machine
 
+### 7.2 Tree-based models
+#### 7.2.1 Decision tree
+- Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum)
+- Hyper parameter: `max-depth`
+- Binary tree, easy interpret (good for medical analysis)
+- Categories
+    - ID3: information gain
+    - C4.5: information gain ratio 
+    - CART: gini
 
-Classical problem solutions (to be done):
-- [Imbalanced training data](https://svds.com/learning-imbalanced-classes/)
-- [Missing data]()
-- [Feature selection]()
-- ...
+#### 7.2.2 Random forest
+- Principle: **resample the samples** with replacement, and **resample the features** at the same time
+- Hyper parameter: `number of trees`, `number of feature for each tree: sqrt(# features)`
+- Reduce overfit, and reduce variance
 
+### 7.2.3 Gradient boosted decision trees
+- Principle: **use decision tree to fit the residue**, like Taylor expansion
 # Deep learning
 ## 1. Optimization algorithms
 ### 1.1 Exponential weighted averages

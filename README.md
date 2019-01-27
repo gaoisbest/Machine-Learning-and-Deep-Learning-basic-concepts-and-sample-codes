@@ -34,6 +34,8 @@
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. Material from [huaxiaozhuan](http://www.huaxiaozhuan.com/) provides good tutorials about commom machine learning algorithms.
 
 # Machine learning
+Model complexity: VC dimension
+
 ## 1. Feature engineering
 ### 1.1 Definition
 Process of extracting **feature vector** (i.e., contain numerical values) from raw data. It will roughly cost 75% times of whole process.

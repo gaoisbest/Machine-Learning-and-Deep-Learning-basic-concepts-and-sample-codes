@@ -207,7 +207,11 @@ https://tech.meituan.com/intro_to_logistic_regression.html
 ## 7. Models
 Model complexity: VC dimension
 ### 7.1 Support vector machine
-
+#### 7.1.1 Kernel
+- Principle
+    - **Maximize the minimum margin**
+- RBF kernel
+- Polynomial kernel 
 ### 7.2 Tree-based models
 #### 7.2.1 Decision tree
 - Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
@@ -241,7 +245,7 @@ Model complexity: VC dimension
 - Hyper parameter: `number of trees`, `number of feature for each tree: sqrt(# features)`
 - Reduce overfit, and reduce variance
 
-### 7.2.3 Gradient boosted decision trees
+#### 7.2.3 Gradient boosted decision trees
 - Principle: **use decision tree to fit the residue**, like Taylor expansion
 
 # Deep learning

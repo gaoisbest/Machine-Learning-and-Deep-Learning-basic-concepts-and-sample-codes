@@ -210,13 +210,31 @@ Model complexity: VC dimension
 
 ### 7.2 Tree-based models
 #### 7.2.1 Decision tree
-- Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum)
+- Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
 - Hyper parameter: `max-depth`
 - Binary tree, easy interpret (good for medical analysis)
 - Categories
-    - ID3: information gain
-    - C4.5: information gain ratio 
-    - CART: gini
+    - ID3
+        - Criterion: information gain. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`
+        - Drawback: perfer feature that has many values
+    - C4.5
+        - Criterion: information gain ratio = information gain / intrinsic value (feature)
+    - CART
+        - Criterion: Gini index. Relationship between entropy and Gini index, `f(x)=-ln(x)` Tayor expansion with `x=1`, then `f(x)=1-x`, then `entropy = -sum(p_i * ln(p_i)) = sum(p_i * (1-p_i))) = gini index`
+	- For [regression](https://www.quora.com/How-do-decision-trees-for-regression-work), **recursive partition** with the principle that splitting the value of a feature that minimizes the sum of squared errors (SSE) of prediction. To avoid overfitting, |tree size| is added to SSE
+    - Multi-variate decision tree
+        - Criterion: each node is a **linear classifier** instead of a univariate feature
+- Overfitting
+    - Pre-pruning
+    - Post-pruning
+    - Plus the tree size is SSE
+- Continuous feature
+    - To discrete feature
+    - First sort the value, then choose the median of two adjacent value as the condition
+- Split stopping criterion
+    - All samples belong to the same category
+    - Feature is None, or all samples have same values on all features
+    - No samples available
 
 #### 7.2.2 Random forest
 - Principle: **resample the samples** with replacement, and **resample the features** at the same time
@@ -225,6 +243,7 @@ Model complexity: VC dimension
 
 ### 7.2.3 Gradient boosted decision trees
 - Principle: **use decision tree to fit the residue**, like Taylor expansion
+
 # Deep learning
 ## 1. Optimization algorithms
 ### 1.1 Exponential weighted averages

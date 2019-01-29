@@ -209,9 +209,34 @@ Model complexity: VC dimension
 ### 7.1 Support vector machine
 #### 7.1.1 Kernel
 - Principle
-    - **Maximize the minimum margin**
-- RBF kernel
-- Polynomial kernel 
+    - **Hyperplane**: `w_T * x + b = 0`
+    - **Margin** (i.e., distance between *positive* support vectors and *negative* support vectors): `2 / ||w||`. 
+    - **Maximize the margin**: `max 2 / ||w||` s.t. `y_i (w^T * x_i + b) >= 1` -> **Minimize the opposite**: `min 1/2 * ||w||^2` s.t. `y_i (w^T * x_i + b) >= 1`. This formula can be solved directly by quadratic programming (QP), but can also be solved by Lagrance efficiently
+    - **Lagrance**
+        - `L(w, b, a) = 1/2 * ||w||^2 + sum(a_i * (1 - y_i * (w_T * x_i + b)))` [1]
+        - Let the partial derivative of `L` with respect to `w` and `b` euqal to 0, then `w = sum(a_i * y_i * x_i), 0 = sum(a_i * y_i)`. Replace above euqation to [1], then `L = max sum(a_i) - 1 / 2 * sum(sum(a_i * a_j * y_i * y_j * x_i^T.dot(x_j)))`, s.t. `sum(a_i * y_i) = 0 and a_1 >=0` [2], which `a` can be solved by **Sequential Minimal Optimization (SMO)** (select two variables `a_i` and `a_j`, fix other `a`)
+        - KKT: solution of prime problem == solution of dual problem
+    - **Kernel**
+        - Principle: **map low dimension linear non-separable space to high dimension linear separable space use function fai(x)**
+        - However, `x_i^T.dot(x_j)` -> `fai(x_i).dot(fai(Y_i))` can be hard to compute, then **kernel** perform the linear transformation and return the inner product of this transformation directly. 
+        - Catetories
+            - Linear kernel: `x_i^Tx_j`
+	    - Polynomial kernel: `(x_i^Tx_j)^d`
+	    - Gaussian (RBF) kernel: exp(- ||x_i-x_j||^2 / 2sigma^2)
+- Soft margin SVM
+    - `min 1/2 * ||w||^2 + C * sum(epison_i)`, s.t. `y_i (w^T * x_i + b) >= 1 - epison_i` and `epison_i >=0`    
+- Hinge loss view
+    - Definition: `max(0, 1-z)`
+    - SVM: `min 1/2 * ||w||^2 + C * sum(max(0, 1 - y_i(w^T * x_i + b))))`
+    - Relationship with NN
+        - SGD with hinge loss
+- Multi-class SVM
+    - [one-vs-the-rest](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC)
+    - [one-against-one](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)
+- [SVR](https://www.saedsayad.com/support_vector_machine_reg.htm)
+
+
+
 ### 7.2 Tree-based models
 #### 7.2.1 Decision tree
 - Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**

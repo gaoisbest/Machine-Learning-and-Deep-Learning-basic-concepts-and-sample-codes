@@ -1,16 +1,12 @@
 # Outline
 - [Introduction](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#introduction)
 - [Machine learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#machine-learning)
-    - [Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-feature-engineering)
-    	- [Definition](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#11-definition)
-        - [Categories](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#12-categories)
-        - [Qualities of good features](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#13-qualities-of-good-features)
-        - [Feature cleaning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#14-feature-cleaning)
-        - [Tools](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#15-tools)
-    - [Loss function](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-loss-function)
-    - [Evaluation metrics](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-evaluation-metrics)
-    - [Sample projects](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-sample-projects)
-    - [Classical questions](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-classical-questions)
+    - [1. Models]()
+    - [2. Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-feature-engineering)
+    - [3. Loss function](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-loss-function)
+    - [4. Evaluation metrics](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-evaluation-metrics)
+    - [5. Sample projects](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-sample-projects)
+    - [6. Classical questions](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-classical-questions)
 - [Deep learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#deep-learning)
     - [Optimization algorithms](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-optimization-algorithms)
     - [Exploding/vanishing gradients](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-explodingvanishing-gradients)
@@ -34,11 +30,108 @@
 Since [CS231n](http://cs231n.stanford.edu/), [Andrew Ng's new DL course](https://www.coursera.org/specializations/deep-learning), [Andrew Ng's CS229](https://see.stanford.edu/Course/CS229) and [Google ML course](https://developers.google.cn/machine-learning/crash-course/) are all introducing basic concepts about ML and DL, so I combine them together. Material from [huaxiaozhuan](http://www.huaxiaozhuan.com/) provides good tutorials about commom machine learning algorithms.
 
 # Machine learning
+## 1. Models
+Model complexity: VC dimension
+### 1.1 Support vector machine
+#### 1.1.1 Kernel
+- Principle
+    - **Hyperplane**: `w_T * x + b = 0`
+    - **Margin** (i.e., distance between *positive* support vectors and *negative* support vectors): `2 / ||w||`. 
+    - **Maximize the margin**: `max 2 / ||w||` s.t. `y_i (w^T * x_i + b) >= 1` -> **Minimize the opposite**: `min 1/2 * ||w||^2` s.t. `y_i (w^T * x_i + b) >= 1`. This formula can be solved directly by quadratic programming (QP), but can also be solved by Lagrance efficiently
+    - **Lagrance**
+        - `L(w, b, a) = 1/2 * ||w||^2 + sum(a_i * (1 - y_i * (w_T * x_i + b)))` [1]
+        - Let the partial derivative of `L` with respect to `w` and `b` euqal to 0, then `w = sum(a_i * y_i * x_i), 0 = sum(a_i * y_i)`. Replace above euqation to [1], then `L = max sum(a_i) - 1 / 2 * sum(sum(a_i * a_j * y_i * y_j * x_i^T.dot(x_j)))`, s.t. `sum(a_i * y_i) = 0 and a_1 >=0` [2], which `a` can be solved by **Sequential Minimal Optimization (SMO)** (select two variables `a_i` and `a_j`, fix other `a`)
+        - KKT: solution of prime problem == solution of dual problem
+    - **Kernel**
+        - Principle: **map low dimension linear non-separable space to high dimension linear separable space use function fai(x)**
+        - However, `x_i^T.dot(x_j)` -> `fai(x_i).dot(fai(Y_i))` can be hard to compute, then **kernel** perform the linear transformation and return the inner product of this transformation directly. 
+        - Catetories
+            - Linear kernel: `x_i^Tx_j`
+	    - Polynomial kernel: `(x_i^Tx_j)^d`
+	    - Gaussian (RBF) kernel: exp(- ||x_i-x_j||^2 / 2sigma^2)
+- Soft margin SVM
+    - `min 1/2 * ||w||^2 + C * sum(epison_i)`, s.t. `y_i (w^T * x_i + b) >= 1 - epison_i` and `epison_i >=0`    
+- Hinge loss view
+    - Definition: `max(0, 1-z)`
+    - SVM: `min 1/2 * ||w||^2 + C * sum(max(0, 1 - y_i(w^T * x_i + b))))`
+    - Relationship with NN
+        - SGD with hinge loss
+- Multi-class SVM
+    - [one-vs-the-rest](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC)
+    - [one-against-one](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)
+- [SVR](https://www.saedsayad.com/support_vector_machine_reg.htm)
 
-## 1. Feature engineering
-### 1.1 Definition
-Process of extracting **feature vector** (i.e., contain numerical values) from raw data. It will roughly cost 75% times of whole process.
-### 1.2 Categories
+
+
+### 1.2 Tree-based models
+#### 1.2.1 Decision tree
+- Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
+- Hyper parameter: `max-depth`
+- Binary tree, easy interpret (good for medical analysis)
+- Categories
+    - ID3
+        - Criterion: information gain. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`
+        - Drawback: perfer feature that has many values
+    - C4.5
+        - Criterion: information gain ratio = information gain / intrinsic value (feature)
+    - CART
+        - Criterion: Gini index. Relationship between entropy and Gini index, `f(x)=-ln(x)` Tayor expansion with `x=1`, then `f(x)=1-x`, then `entropy = -sum(p_i * ln(p_i)) = sum(p_i * (1-p_i))) = gini index`
+	- For [regression](https://www.quora.com/How-do-decision-trees-for-regression-work), **recursive partition** with the principle that splitting the value of a feature that minimizes the sum of squared errors (SSE) of prediction. To avoid overfitting, |tree size| is added to SSE
+    - Multi-variate decision tree
+        - Criterion: each node is a **linear classifier** instead of a univariate feature
+- Overfitting
+    - Pre-pruning
+    - Post-pruning
+    - Plus the tree size is SSE
+- Continuous feature
+    - To discrete feature
+    - First sort the value, then choose the median of two adjacent value as the condition
+- Split stopping criterion
+    - All samples belong to the same category
+    - Feature is None, or all samples have same values on all features
+    - No samples available
+
+#### 1.2.2 Random forest
+- Principle: **resample the samples** with replacement, and **resample the features** at the same time
+- Hyper parameter: `number of trees`, `number of feature for each tree: sqrt(# features)`
+- Reduce overfit, and reduce variance
+
+#### 1.2.3 Gradient boosted decision trees
+- Principle: **use decision tree to fit the residue**, like Taylor expansion
+
+
+### 1.3 EM
+#### Principle
+- Expectation Maximization is MLE or MAP with **latent variable**, which is used to estimate the parameter **iteratively**
+- Two steps
+    - E
+        - `product(p(y|theita)) -> sum(lnp(y|theita)) = sum(ln sum(y,z|theita))`, where `sum` in `ln` make derivative equal to `0` cannot be computed
+        - `Q(theita, theita_i): sum(p(z|y,theita) * lnp(y,z|theita))`, compute expectation of `lnp(y,z|theita)` with weight `p(z|y,theita)` (you can think that first choose the cluster first in GMM), where `theita_i` is known and `theita` is the parameter that to be estimated
+	
+    - M
+        - `argmax Q` find theita with making partial derivative of `Q` with repect to `theita` equal to `0`
+- Applications
+    - [K-means and Gaussian mixture model](http://www.cs.cmu.edu/~guestrin/Class/10701-S05/slides/EM-MixGauss4-4-2005.pdf)
+
+### 1.4 MaxEnt
+#### 1.4.1 Entropy
+- Entropy
+    - Information size: `-logp(x)`
+- Union entropy
+- Condition entropy
+- Mutual information
+    - Measure the non-linear relationship between two variables
+    - Can be used to select feature
+- Relative entropy (i.e., KL divergence)
+    - Measure the **difference between two distributions**
+    - `D(p||q) != D(q||p)`
+    - `D(p||q) >= 0`
+- Cross entropy
+    - Relationship with KL divergence: `CE(p, q) = H(p) + D(p||q)`
+
+
+## 2. Feature engineering
+### 2.1 Categories
 - Numerical feature
 	- Copied directly
 - String feature
@@ -50,26 +143,21 @@ Process of extracting **feature vector** (i.e., contain numerical values) from r
 	- **Additional boolean** feature
 	- For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
 	
-### 1.3 Qualities of good features
-- The feature value should appears at least more than 5 times in the data set. Features like ID is not a good feature since for each sample, the ID is unqiue.
-- The feature has clear and obvious meaning.
-- The definition of the feature should not change over time.
-
-### 1.4 [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
+### 2.2 [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
 - **Scaling**
 	- Min-max
 	- Z-score
 - Outlier
 	- Log
 	- Clipping
-### 1.5 Tools
-- [Featuretools](https://www.featuretools.com/) for automatic feature engineering.
-#### 1.6 Feature selection
+### 2.3 Feature selection
 - Lasso with L1 regularization
 - Greedy select each feature at one time
+### 2.4 Tools
+- [Featuretools](https://www.featuretools.com/) for automatic feature engineering.
 
-## 2. Loss function
-### 2.1 Categories
+## 3. Loss function
+### 3.1 Categories
 - Mean square error (MSE)
     - Linear regression
     - L2 loss
@@ -85,13 +173,13 @@ Process of extracting **feature vector** (i.e., contain numerical values) from r
 - Cosine similarity
     - Cosine curve (degree=0, cos_value=1; degree=90, cos_value=0; degree=180, cos_value=-1)
     
-### 2.2 Empirical risk minimization (ERM) and Structural risk minimization (SRM)
+### 3.2 Empirical risk minimization (ERM) and Structural risk minimization (SRM)
 **ERM = minimize loss**, it may leads to over-fitting phenomenon. For example, maximum likelihood estimation (MLE).  
 **SRM = ERM + regulairzation**. For example, maximum a posterior (MAP).  
 The [link](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/) gives a comparision of MLE and MAP.
 
-## 3. Evaluation metrics
-### 3.1 Accuracy, precision, recall and F1
+## 4. Evaluation metrics
+### 4.1 Accuracy, precision, recall and F1
 Consider a scenario that predicting the gender of the user (i.e., male or female). This is a classical **binary classification** prediction problem. Let predicted 1 (i.e., positive) indicates male and predicted 0 (i.e., negative) indicates female.  
 
 **Confusion matrix**:  
@@ -137,7 +225,7 @@ In general, when **TP < FP**, the accuracy will always increase when we change t
 
 **Recall@k**  
 
-### 3.2 ROC, AUC  
+### 4.2 ROC, AUC  
 **ROC (Receiver Operating Characteristic curve)**: A curve of true positive rate vs. false positive rate at different **classification thresholds**. The **x-axis** is **False Positive rate**, and the y-axis is **True Positive rate**. [3] .  
 
 Close to the **up left** point (TPR=1.0, FPR=0.0) indicates the model is better. On the diagonal line, TPR = FPR, which means the **random guess**.  
@@ -146,15 +234,13 @@ Close to the **up left** point (TPR=1.0, FPR=0.0) indicates the model is better.
 **AUC (Area under the ROC curve)**: aggregate measure of performance across all possible classification thresholds.  
 One way of interpreting AUC is as the **probability** that the model ranks a random positive example more highly than a random negative example. [3]
 
-### 3.3 BLEU
+### 4.3 BLEU
 
 References:  
 [1] https://tryolabs.com/blog/2013/03/25/why-accuracy-alone-bad-measure-classification-tasks-and-what-we-can-do-about-it/  
 [2] https://www.zhihu.com/question/30643044  
 [3] https://developers.google.cn/machine-learning/crash-course/classification/true-false-positive-negative  
 
-## 4. Error analysis
-- Manually check say 100 mis-classified validaton samples, and count their error types.
 
 ## 5. Sample projects
 - [Vectorized logistic regression](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/Logistic%20regression/Logistic_regression_vectorized.py)
@@ -204,74 +290,9 @@ https://tech.meituan.com/intro_to_logistic_regression.html
 - Train and dev/test may from slightly different distribution.
 - [Learning curve](http://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html) shows the **training and validation score** along the increases of **training examples**.
 
-## 7. Models
-Model complexity: VC dimension
-### 7.1 Support vector machine
-#### 7.1.1 Kernel
-- Principle
-    - **Hyperplane**: `w_T * x + b = 0`
-    - **Margin** (i.e., distance between *positive* support vectors and *negative* support vectors): `2 / ||w||`. 
-    - **Maximize the margin**: `max 2 / ||w||` s.t. `y_i (w^T * x_i + b) >= 1` -> **Minimize the opposite**: `min 1/2 * ||w||^2` s.t. `y_i (w^T * x_i + b) >= 1`. This formula can be solved directly by quadratic programming (QP), but can also be solved by Lagrance efficiently
-    - **Lagrance**
-        - `L(w, b, a) = 1/2 * ||w||^2 + sum(a_i * (1 - y_i * (w_T * x_i + b)))` [1]
-        - Let the partial derivative of `L` with respect to `w` and `b` euqal to 0, then `w = sum(a_i * y_i * x_i), 0 = sum(a_i * y_i)`. Replace above euqation to [1], then `L = max sum(a_i) - 1 / 2 * sum(sum(a_i * a_j * y_i * y_j * x_i^T.dot(x_j)))`, s.t. `sum(a_i * y_i) = 0 and a_1 >=0` [2], which `a` can be solved by **Sequential Minimal Optimization (SMO)** (select two variables `a_i` and `a_j`, fix other `a`)
-        - KKT: solution of prime problem == solution of dual problem
-    - **Kernel**
-        - Principle: **map low dimension linear non-separable space to high dimension linear separable space use function fai(x)**
-        - However, `x_i^T.dot(x_j)` -> `fai(x_i).dot(fai(Y_i))` can be hard to compute, then **kernel** perform the linear transformation and return the inner product of this transformation directly. 
-        - Catetories
-            - Linear kernel: `x_i^Tx_j`
-	    - Polynomial kernel: `(x_i^Tx_j)^d`
-	    - Gaussian (RBF) kernel: exp(- ||x_i-x_j||^2 / 2sigma^2)
-- Soft margin SVM
-    - `min 1/2 * ||w||^2 + C * sum(epison_i)`, s.t. `y_i (w^T * x_i + b) >= 1 - epison_i` and `epison_i >=0`    
-- Hinge loss view
-    - Definition: `max(0, 1-z)`
-    - SVM: `min 1/2 * ||w||^2 + C * sum(max(0, 1 - y_i(w^T * x_i + b))))`
-    - Relationship with NN
-        - SGD with hinge loss
-- Multi-class SVM
-    - [one-vs-the-rest](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC)
-    - [one-against-one](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)
-- [SVR](https://www.saedsayad.com/support_vector_machine_reg.htm)
+### 6.3 Error analysis
+- Manually check say 100 mis-classified validaton samples, and count their error types.
 
-
-
-### 7.2 Tree-based models
-#### 7.2.1 Decision tree
-- Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
-- Hyper parameter: `max-depth`
-- Binary tree, easy interpret (good for medical analysis)
-- Categories
-    - ID3
-        - Criterion: information gain. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`
-        - Drawback: perfer feature that has many values
-    - C4.5
-        - Criterion: information gain ratio = information gain / intrinsic value (feature)
-    - CART
-        - Criterion: Gini index. Relationship between entropy and Gini index, `f(x)=-ln(x)` Tayor expansion with `x=1`, then `f(x)=1-x`, then `entropy = -sum(p_i * ln(p_i)) = sum(p_i * (1-p_i))) = gini index`
-	- For [regression](https://www.quora.com/How-do-decision-trees-for-regression-work), **recursive partition** with the principle that splitting the value of a feature that minimizes the sum of squared errors (SSE) of prediction. To avoid overfitting, |tree size| is added to SSE
-    - Multi-variate decision tree
-        - Criterion: each node is a **linear classifier** instead of a univariate feature
-- Overfitting
-    - Pre-pruning
-    - Post-pruning
-    - Plus the tree size is SSE
-- Continuous feature
-    - To discrete feature
-    - First sort the value, then choose the median of two adjacent value as the condition
-- Split stopping criterion
-    - All samples belong to the same category
-    - Feature is None, or all samples have same values on all features
-    - No samples available
-
-#### 7.2.2 Random forest
-- Principle: **resample the samples** with replacement, and **resample the features** at the same time
-- Hyper parameter: `number of trees`, `number of feature for each tree: sqrt(# features)`
-- Reduce overfit, and reduce variance
-
-#### 7.2.3 Gradient boosted decision trees
-- Principle: **use decision tree to fit the residue**, like Taylor expansion
 
 # Deep learning
 ## 1. Optimization algorithms

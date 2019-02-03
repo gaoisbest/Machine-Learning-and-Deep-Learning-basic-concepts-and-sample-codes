@@ -7,6 +7,8 @@
     - [4. Evaluation metrics](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-evaluation-metrics)
     - [5. Sample projects](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-sample-projects)
     - [6. Classical questions](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#5-classical-questions)
+    
+    
 - [Deep learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#deep-learning)
     - [Optimization algorithms](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-optimization-algorithms)
     - [Exploding/vanishing gradients](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-explodingvanishing-gradients)
@@ -129,20 +131,28 @@ Model complexity: VC dimension
 - Cross entropy
     - Relationship with KL divergence: `CE(p, q) = H(p) + D(p||q)`
 
+### 1.5 Model selection
+#### 1.5.1 Under-fitting / Over-fitting
+Instead of **learning curve**, we usually look at the **gap** bewteen training accury and testing accury to check whether the model is over-fitting.
+#### 1.5.2 Model ensemble
+- Bagging
+- Boosting
+- Stacking
+
+
 
 ## 2. Feature engineering
 ### 2.1 Categories
-- Numerical feature
-	- Copied directly
-- String feature
-	- One-hot encoding
-- Categorical (enumerated) feature
-	- **Boolean** strategy (i.e., is it yes or no ?)
-	- For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`.
+- Numerical
+- Categorical (enumerated)
+    - **Boolean** strategy (i.e., is it yes or no ?)
+    - For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`.
 - Missing value
 	- **Additional boolean** feature
 	- For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
-	
+- Time
+- Combination
+
 ### 2.2 [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
 - **Scaling**
 	- Min-max

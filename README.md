@@ -3,6 +3,9 @@
 - [Machine learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#machine-learning)
     - [1. Models]()
     - [2. Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-feature-engineering)
+        - [2.1 Categories]()
+        - [2.2 Feature selection]()
+        - [2.3 Tools]() 
     - [3. Loss function](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-loss-function)
     - [4. Evaluation metrics](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-evaluation-metrics)
     - [5. Sample projects](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-sample-projects)
@@ -134,36 +137,66 @@ Model complexity: VC dimension
 ### 1.5 Model selection
 #### 1.5.1 Under-fitting / Over-fitting
 Instead of **learning curve**, we usually look at the **gap** bewteen training accury and testing accury to check whether the model is over-fitting.
-#### 1.5.2 Model ensemble
+
+#### 1.5.2 [Model ensemble](https://mlwave.com/kaggle-ensembling-guide/), [sklearn](https://scikit-learn.org/stable/modules/ensemble.html)
 - Bagging
+    - Random feature and random samples
+    - Reduce high-variance
 - Boosting
+    - Reduce high-bias
+    - Difference between GBDT and XgBoost: first-order and second-order derivative
+- Blending
+    - Split data to first-step training data and second-step training data
+    - Based on first-step training data, we can train different models `[m_1, m_2, ..., m_n]`
+    - Based on second-step training data, first get the predictions `[y_1, y_2, ..., y_n]` using `[m_1, m_2, ..., m_n]`, then a new model (usually simple model such as linear model) fit on `[y_1, y_2, ..., y_n], true-y`
 - Stacking
+    - Basic idea of Stacking is same as Blending
+    - Stacking uses cross-fold-validation (the out-of-fold is used to train the next layer), while Blending uses a holdout validation (part of the train is used in the first layer, part in the second)
 
 
 
 ## 2. Feature engineering
 ### 2.1 Categories
 - Numerical
+    - **Scaling**
+        - `MinMaxScaler`, `StandardScaler`
+    - Log
+    - Statistics
+        - The gap between the price and the average price
+    - **Discreting** (e.g., `age`)
+        - `pd.cut`, `pd.qcut`
 - Categorical (enumerated)
-    - **Boolean** strategy (i.e., is it yes or no ?)
-    - For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`.
-- Missing value
-	- **Additional boolean** feature
-	- For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
+    - **Boolean** (i.e., is it yes or no ?)
+        - For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`
+	- `pd.get_dummies`
+    - Histogram
+        - For example, there are `gender` and `hobbies` two features, we can calculate the precent of hobby on `male` and `female` category respectively. And replacing this percent to `hobbies` feature to each sample
 - Time
+    - Continuous
+        - During time (i.e., browsing during time)
+        - Interval time (i.e., the time between last time buying and now)
+    - Discrete
+        - The quarter in one year (i.e., 0, 1, 2, 3)
+        - The week in one year (i.e., 0, 1, ..., 54)
+        - The day in one week (i.e., 0, 1, ..., 6)
+        - The hour in one day (i.e., 0, 1, ..., 23)
+        - Workday or weekend
+- Missing value
+    - **Additional boolean** feature
+    - For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
 - Combination
 
-### 2.2 [Feature cleaning](https://developers.google.cn/machine-learning/crash-course/representation/cleaning-data)
-- **Scaling**
-	- Min-max
-	- Z-score
-- Outlier
-	- Log
-	- Clipping
-### 2.3 Feature selection
-- Lasso with L1 regularization
-- Greedy select each feature at one time
-### 2.4 Tools
+### 2.2 Feature selection
+- [**Univariate**](https://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
+    - Selecting the best features based on univariate statistical tests
+    - For example, chi2, Pearson, mutual information
+- [**Recursive feature elimination**](https://scikit-learn.org/stable/modules/feature_selection.html#recursive-feature-elimination)
+    - Selecting features by recursively considering smaller and smaller sets of features
+- [**SelectFromModel**](https://scikit-learn.org/stable/modules/feature_selection.html#feature-selection-using-selectfrommodel)
+    - Lasso with L1 regularization
+    - Tree-based
+
+### 2.3 Tools
 - [Featuretools](https://www.featuretools.com/) for automatic feature engineering.
 
 ## 3. Loss function

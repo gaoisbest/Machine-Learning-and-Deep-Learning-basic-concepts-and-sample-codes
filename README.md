@@ -2,10 +2,10 @@
 - [Introduction](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#introduction)
 - [Machine learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#machine-learning)
     - [1. Models]()
-    - [2. Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-feature-engineering)
-        - [2.1 Categories]()
-        - [2.2 Feature selection]()
-        - [2.3 Tools]() 
+    - [2. Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-feature-engineering)
+        - [2.1 Categories](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#21-categories)
+        - [2.2 Feature selection](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#22-feature-selection)
+        - [2.3 Tools](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#23-tools)
     - [3. Loss function](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-loss-function)
     - [4. Evaluation metrics](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#3-evaluation-metrics)
     - [5. Sample projects](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#4-sample-projects)
@@ -157,7 +157,7 @@ Instead of **learning curve**, we usually look at the **gap** bewteen training a
 
 ## 2. Feature engineering
 ### 2.1 Categories
-- Numerical
+- **Numerical**
     - **Scaling**
         - `MinMaxScaler`, `StandardScaler`
     - Log
@@ -165,13 +165,13 @@ Instead of **learning curve**, we usually look at the **gap** bewteen training a
         - The gap between the price and the average price
     - **Discreting** (e.g., `age`)
         - `pd.cut`, `pd.qcut`
-- Categorical (enumerated)
+- **Categorical (enumerated)**
     - **Boolean** (i.e., is it yes or no ?)
         - For example, `red, yellow, green` are categorical feature, a object both have `red` and `green` feature can be represented as `[1, 0, 1]`
 	- `pd.get_dummies`
     - Histogram
         - For example, there are `gender` and `hobbies` two features, we can calculate the precent of hobby on `male` and `female` category respectively. And replacing this percent to `hobbies` feature to each sample
-- Time
+- **Time**
     - Continuous
         - During time (i.e., browsing during time)
         - Interval time (i.e., the time between last time buying and now)
@@ -181,10 +181,9 @@ Instead of **learning curve**, we usually look at the **gap** bewteen training a
         - The day in one week (i.e., 0, 1, ..., 6)
         - The hour in one day (i.e., 0, 1, ..., 23)
         - Workday or weekend
-- Missing value
+- **Missing value**
     - **Additional boolean** feature
     - For example, some sample does not have `age` feature, then additional feature `is_age_defined` is added.
-- Combination
 
 ### 2.2 Feature selection
 - [**Univariate**](https://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)

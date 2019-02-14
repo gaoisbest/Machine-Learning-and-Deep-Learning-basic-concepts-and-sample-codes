@@ -73,6 +73,7 @@ Model complexity: VC dimension
 - Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
 - Hyper parameter: `max-depth`
 - Binary tree, easy interpret (good for medical analysis)
+- Do not need standarizaion or normalization, and missing data cannot affect the model
 - Categories
     - ID3
         - Criterion: information gain. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`

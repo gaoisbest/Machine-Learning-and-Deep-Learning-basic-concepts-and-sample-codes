@@ -209,6 +209,8 @@ Instead of **learning curve**, we usually look at the **gap** bewteen training a
     - **L(Y, f(x)) = -logf(x)**. [Fast.ai.wiki](http://wiki.fast.ai/index.php/Log_Loss) gives a detailed explanation of log loss.
 - Cross entropy
     - shortcut of KL divergence, relative entropy
+- Max-margin loss
+    - `J = max(0, 1+s-s_c)`
 - Exponential loss
     - Adaboost
 - Hinge loss

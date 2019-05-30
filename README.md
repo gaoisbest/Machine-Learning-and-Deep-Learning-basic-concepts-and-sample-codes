@@ -51,9 +51,9 @@ Model complexity: VC dimension
         - Principle: **map low dimension linear non-separable space to high dimension linear separable space use function fai(x)**
         - However, `x_i^T.dot(x_j)` -> `fai(x_i).dot(fai(Y_i))` can be hard to compute, then **kernel** perform the linear transformation and return the inner product of this transformation directly. 
         - Catetories
-	    - Linear kernel: `x_i^Tx_j`
-	    - Polynomial kernel: `(x_i^Tx_j)^d`
-	    - Gaussian (RBF) kernel: exp(- ||x_i-x_j||^2 / 2sigma^2)
+	        - Linear kernel: `x_i^Tx_j`
+	        - Polynomial kernel: `(x_i^Tx_j)^d`
+	        - Gaussian (RBF) kernel: exp(- ||x_i-x_j||^2 / 2sigma^2)
 - Soft margin SVM
     - `min 1/2 * ||w||^2 + C * sum(epison_i)`, s.t. `y_i (w^T * x_i + b) >= 1 - epison_i` and `epison_i >=0`    
 - Hinge loss view

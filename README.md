@@ -1,7 +1,8 @@
 # Outline
 - [Introduction](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#introduction)
 - [Machine learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#machine-learning)
-    - [1. Models]()
+    - [1. Models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-models)
+        - [1.1 Support vector machine](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#11-support-vector-machine)
     - [2. Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-feature-engineering)
         - [2.1 Categories](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#21-categories)
         - [2.2 Feature selection](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#22-feature-selection)
@@ -64,7 +65,11 @@ Model complexity: VC dimension
 - Multi-class SVM
     - [one-vs-the-rest](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC)
     - [one-against-one](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)
-- [SVR](https://www.saedsayad.com/support_vector_machine_reg.htm)
+- Extensions
+    - [SVR](https://www.saedsayad.com/support_vector_machine_reg.htm)
+        - When two points appears in a range, the loss is zero
+    - Ranking SVM
+    - One-class SVM
 
 
 

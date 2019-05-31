@@ -56,7 +56,11 @@ Model complexity: VC dimension
 	        - Polynomial kernel: `(x_i^Tx_j)^d`
 	        - Gaussian (RBF) kernel: exp(- ||x_i-x_j||^2 / 2sigma^2)
 - Soft margin SVM
-    - `min 1/2 * ||w||^2 + C * sum(epison_i)`, s.t. `y_i (w^T * x_i + b) >= 1 - epison_i` and `epison_i >=0`    
+    - `min 1/2 * ||w||^2 + C * sum(epison_i)`, s.t. `y_i (w^T * x_i + b) >= 1 - epison_i` and `epison_i >=0`
+    - `C` is a regularization parameter
+        - small `C` allows constraints to be easily ignored → large margin
+        - large `C` makes constraints hard to ignore → narrow margin
+    - Note, there is only one parameter, `C`
 - Hinge loss view
     - Definition: `max(0, 1-z)`
     - SVM: `min 1/2 * ||w||^2 + C * sum(max(0, 1 - y_i(w^T * x_i + b))))`

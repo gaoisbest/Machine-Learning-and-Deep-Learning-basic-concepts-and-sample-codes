@@ -3,6 +3,7 @@
 - [Machine learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#machine-learning)
     - [1. Models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#1-models)
         - [1.1 Support vector machine](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#11-support-vector-machine)
+        - [1.2 Tree-based models](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#12-tree-based-models)
     - [2. Feature engineering](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#2-feature-engineering)
         - [2.1 Categories](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#21-categories)
         - [2.2 Feature selection](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#22-feature-selection)
@@ -103,7 +104,6 @@ Model complexity: VC dimension
     - To discrete feature via **bi-partition** (e.g., >10 ?)
     - First sort the value, then choose the **median** of two adjacent value as the condition
 - **Missing data**
-    - 
 - Split stopping criterion
     - All samples belong to the same category
     - Feature is None, or all samples have same values on all features

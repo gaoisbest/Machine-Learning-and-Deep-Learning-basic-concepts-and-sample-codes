@@ -81,22 +81,29 @@ Model complexity: VC dimension
 - Do not need standarizaion or normalization, and missing data cannot affect the model
 - Categories
     - ID3
-        - Criterion: information gain. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`
-        - Drawback: perfer feature that has many values
+        - Criterion: maximize **information gain**. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`
+        - **Multi-branch** tree
+        - Drawback: **perfer features that has many values**
     - C4.5
-        - Criterion: information gain ratio = information gain / intrinsic value (feature)
+        - Criterion: maximize **information gain ratio** = information gain / intrinsic value (feature)
+        - **Multi-branch** tree
     - CART
-        - Criterion: Gini index. Relationship between entropy and Gini index, `f(x)=-ln(x)` Tayor expansion with `x=1`, then `f(x)=1-x`, then `entropy = -sum(p_i * ln(p_i)) = sum(p_i * (1-p_i))) = gini index`
-	- For [regression](https://www.quora.com/How-do-decision-trees-for-regression-work), **recursive partition** with the principle that splitting the value of a feature that minimizes the sum of squared errors (SSE) of prediction. To avoid overfitting, |tree size| is added to SSE
+        - Criterion: minimize **suqared error** for regression (`min(min(sum(y_i-c_1)^2) + min(sum(y_1-c_2)^2))`, where `c_1` and `c_2` is  mean of two parts splitted by feature value) and **Gini index** for classification (`1 - sum(p_k^2)`)
+        - **Binary-branch** tree: is or not is for one feature
+        - Relationship between entropy and Gini index, `f(x)=-ln(x)` Tayor expansion with `x=1`, then `f(x)=1-x`, then `entropy = -sum(p_i * ln(p_i)) = sum(p_i * (1-p_i))) = gini index`
+	- For [regression](https://www.quora.com/How-do-decision-trees-for-regression-work), **recursive partition** with the principle that splitting the value of a feature that minimizes the sum of squared errors (SSE) of prediction. To avoid overfitting, `|tree size|` is added to SSE
     - Multi-variate decision tree
         - Criterion: each node is a **linear classifier** instead of a univariate feature
 - Overfitting
     - Pre-pruning
+        - prone to under-fitting
     - Post-pruning
-    - Plus the tree size is SSE
-- Continuous feature
-    - To discrete feature
-    - First sort the value, then choose the median of two adjacent value as the condition
+        - For CART, plus the `|tree size|` in SSE
+- **Continuous feature**
+    - To discrete feature via **bi-partition** (e.g., >10 ?)
+    - First sort the value, then choose the **median** of two adjacent value as the condition
+- **Missing data**
+    - 
 - Split stopping criterion
     - All samples belong to the same category
     - Feature is None, or all samples have same values on all features
@@ -109,7 +116,7 @@ Model complexity: VC dimension
 
 #### 1.2.3 Gradient boosted decision trees
 - Principle: **use decision tree to fit the residue**, like Taylor expansion
-
+- Reduce bias
 
 ### 1.3 EM
 #### Principle

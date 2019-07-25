@@ -651,8 +651,8 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
 
 # Reinforcement Learning
 ## Definitions
-- Reinforcement learning (RL) is an area of machine learning that focuses on how **agent** to **act** in an **environment** in order to maximize some given **reward**
-- Markov Decision Processes (MDPs)
+- **Reinforcement learning (RL)** is an area of machine learning that focuses on how **agent** to **act** in an **environment** in order to maximize some given **reward**
+- **[Markov Decision Processes (MDPs)](https://web.stanford.edu/class/cs224s/lectures/224s.17.lec11.pdf)**
     - Components
         - **Agent**: decision maker
         - **Environment**
@@ -662,8 +662,8 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
     - **Sequential process**
         - At each time step, given the environment’s state, the agent selects an action to take. Then the environment is transitioned into a new state, and the agent is given a reward as a consequence of the previous action
     - **Goal**
-        - The goal of an agent in an MDP is to maximize its cumulative rewards
-- Policy and Value function
+        - The goal of an agent in an MDP is to maximize its cumulative rewards (i.e., expected *discounted* (i.e., care more about the immediate reward over future rewards, discount rate γ) return of rewards)
+- **Policy and Value function**
     - **Policy**
         - A function that maps a given state to probabilities of **selecting each possible action** from that state, let symbol **`π`** denotes the policy
     - **Value**
@@ -671,7 +671,32 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
         - **Action-value function q_π**: gives us the value of an action under `π`. `q_π` is referred to as the **Q-function**, and the output from the function for any given state-action pair is called a **Q-value**. The letter 'Q' is used to represent the **quality** of taking a given action in a given state
     - **RL Goal**
         - Reinforcement learning algorithms seek to **find a policy (i.e., optimal policy) that will yield more return** to the agent than all other policies
-- Bellman optimality equation for `q∗`
-	
+- **Bellman optimality equation**
+    - ![](https://github.com/gaoisbest/NLP-Projects/blob/master/3_Dialog_system/materials_others/Bellman_optimality_equation.png)
+    - For any state-action pair `(s,a)` at time `t`, the expected return is `R_(t+1)` (i.e. the expected reward we get from taking action `a` in state `s`) + the maximum expected discounted return that can be achieved from any possible next state-action pair.
+    
+- **Q-function**: input the state-atcion pair, output the **Q-value**. The letter **“Q”** is used to represent the **quality** of taking a given action in a given state.
+            
+- **Q-learning**
+    - It is used for learning the **optimal policy** by learning the optimal Q-values for each state-action pair in a Markov Decision Process
+    - **Q-table**: store the Q-values for each state-action pair, the dimension is **(#states * #actions)**
+        - Steps
+            - Initialize all Q-values in the Q-table to 0
+            - For each time-step in each episode:
+                - Choose an action (using the exploration-exploitation trade-off, i.e., **epsilon greedy** strategy)
+                    - `if random_num > epsilon:` choose action via **exploitation**: choose the action with the highest Q-value for its current state
+                    - `else:` choose action via **exploration**: randomly choosing action
+                - Update the Q-value function
+                    - ![](https://github.com/gaoisbest/NLP-Projects/blob/master/3_Dialog_system/materials_others/Q-value_formula.png)
+                    - where α is the **learning rate**, γ is the **discount rate**
+- **DQN**
+    - Use a neural network to approximate the Q-function
+    - **Input** the state, **output** the Q-values for each action that can be taken from that state, the **loss** is the gap between the output Q-values (by policy network) and the target Q-values (by target network) from Bellman equation
+    - **Experience replay**: store the agent’s experiences at each time step called the **replay memory** data set, which stores the last `N` experiences. At time `t`, the agent's experience `e_t` is defined as this tuple: `e_t=(s_t, a_t, r_t+1, s_t+1)`
+    - **Train** the network with **randomly choose** the samples in replay memory to **break the correlation between consecutive samples**
+    - **Target network**
+        - Clone of the policy network, weights are frozen with policy network’s weights, and after `x` time steps, copy policy network's weights to target network
+        - The goal of target network is find the value of the `max` term in Bellman euqation to calculate the target Q-value
+
 ## References
 - http://deeplizard.com/learn/video/nyjbcRQ-uQ8

@@ -703,5 +703,8 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
 
 ## Policy gradient
 
+## Materials
+- [MoFan](https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/), [code](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow)
+- [Baidu RL](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/reinforcement_learning/Baidu_Reinforcement_Learning_Innovations_and_Applications.pdf)
 ## References
 - http://deeplizard.com/learn/video/nyjbcRQ-uQ8

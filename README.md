@@ -31,6 +31,9 @@
 
 - [Reinforcement Learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#reinforcement-learning)
     - [Definitions](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#definitions)
+    - [Q-learning](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#q-learning)
+        - [DQN](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#dqn)
+    - [Policy gradient](https://github.com/gaoisbest/Machine-Learning-and-Deep-Learning-basic-concepts-and-sample-codes/blob/master/README.md#policy-gradient)
 
 
 # Introduction
@@ -678,17 +681,17 @@ See colah's great post on [Understanding LSTM Networks](http://colah.github.io/p
 - **Q-function**: input the state-atcion pair, output the **Q-value**. The letter **“Q”** is used to represent the **quality** of taking a given action in a given state.
             
 ## Q-learning
-    - It is used for learning the **optimal policy** by learning the optimal Q-values for each state-action pair in a Markov Decision Process
-    - **Q-table**: store the Q-values for each state-action pair, the dimension is **(#states * #actions)**
-        - Steps
-            - Initialize all Q-values in the Q-table to 0
-            - For each time-step in each episode:
-                - Choose an action (using the exploration-exploitation trade-off, i.e., **epsilon greedy** strategy)
-                    - `if random_num > epsilon:` choose action via **exploitation**: choose the action with the highest Q-value for its current state
-                    - `else:` choose action via **exploration**: randomly choosing action
-                - Update the Q-value function
-                    - ![](https://github.com/gaoisbest/NLP-Projects/blob/master/3_Dialog_system/materials_others/Q-value_formula.png)
-                    - where α is the **learning rate**, γ is the **discount rate**
+- It is used for learning the **optimal policy** by learning the optimal Q-values for each state-action pair in a Markov Decision Process
+- **Q-table**: store the Q-values for each state-action pair, the dimension is **(#states * #actions)**
+    - Steps
+        - Initialize all Q-values in the Q-table to 0
+        - For each time-step in each episode:
+            - Choose an action (using the exploration-exploitation trade-off, i.e., **epsilon greedy** strategy)
+                - `if random_num > epsilon:` choose action via **exploitation**: choose the action with the highest Q-value for its current state
+                - `else:` choose action via **exploration**: randomly choosing action
+            - Update the Q-value function
+                - ![](https://github.com/gaoisbest/NLP-Projects/blob/master/3_Dialog_system/materials_others/Q-value_formula.png)
+                - where α is the **learning rate**, γ is the **discount rate**
 ### DQN
 - Use a neural network to approximate the Q-function
 - **Input** the state, **output** the Q-values for each action that can be taken from that state, the **loss** is the gap between the output Q-values (by policy network) and the target Q-values (by target network) from Bellman equation

@@ -121,6 +121,11 @@ Model complexity: VC dimension
 - Principle: **use decision tree to fit the residue**, like Taylor expansion
 - Reduce bias
 
+#### 1.2.4 Tools
+- [LightGBM](https://lightgbm.readthedocs.io/en/latest/), [example](https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-how-to-fine-tune-the-parameters-60347819b7fc)
+
+
+
 ### 1.3 EM
 #### Principle
 - Expectation Maximization is MLE or MAP with **latent variable**, which is used to estimate the parameter **iteratively**

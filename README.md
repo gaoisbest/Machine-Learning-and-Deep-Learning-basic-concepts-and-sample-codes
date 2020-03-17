@@ -241,7 +241,13 @@ Instead of **learning curve**, we usually look at the **gap** bewteen training a
 ### 3.2 Empirical risk minimization (ERM) and Structural risk minimization (SRM)
 **ERM = minimize loss**, it may leads to over-fitting phenomenon. For example, maximum likelihood estimation (MLE).  
 **SRM = ERM + regulairzation**. For example, maximum a posterior (MAP).  
-The [link](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/) gives a comparision of MLE and MAP.
+
+#### 3.2.1 MLE
+- Choose value that maximize the probability of observed data, i.e., `argmax_theita P(D|theita)`
+
+#### 3.2.2 MAP
+- Choose value that is most probable given observed data and prior belief, i.e., `argmax_theita P(theita|D) = argmax_theita P(D|theita) * P(theita)`
+- MLE is a special case of MAP, where the prior is [uniform](https://wiseodd.github.io/techblog/2017/01/01/mle-vs-map/)
 
 ## 4. Evaluation metrics
 ### 4.1 Accuracy, precision, recall and F1

@@ -73,7 +73,9 @@ Model complexity: VC dimension
 - [one-vs-the-rest](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC)
 - [one-against-one](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)
 #### 1.1.6 Extensions
-- [SVR](https://www.saedsayad.com/support_vector_machine_reg.htm)
+- [Support Vector Regression](https://www.saedsayad.com/support_vector_machine_reg.htm)
+    - Loss function: tube loss, `max(0, |s-y|-epison)`
+    
 - When two points appears in a range, the loss is zero
 - Ranking SVM
 - One-class SVM
@@ -107,9 +109,9 @@ Model complexity: VC dimension
     - To discrete feature via **bi-partition** (e.g., >10 ?)
     - First sort the value, then choose the **median** of two adjacent value as the condition
 - **Missing data**
-- Split stopping criterion
-    - All samples belong to the same category
-    - Feature is None, or all samples have same values on all features
+- **Split termination criterion**
+    - All `y` is same: all samples belong to the same category
+    - All `X` is same: feature is None, or all samples have same values on all features, no decision stumps
     - No samples available
 
 #### 1.2.2 Random forest

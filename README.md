@@ -81,10 +81,11 @@ Model complexity: VC dimension
 - One-class SVM
 ### 1.2 Tree-based models
 #### 1.2.1 Decision tree
-- Principle: **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
-- Hyper parameter: `max-depth`
-- Binary tree, easy interpret (good for medical analysis)
-- Do not need standarizaion or normalization, and missing data cannot affect the model
+- Principle
+    - **Recursive partition** of the space with **greedy** strategy (i.e., each partition is optimum), the boundary is **axis-parallel**
+    - Hyper parameter: `max-depth`
+    - Binary tree, easy interpret (good for medical analysis)
+    - Do not need standarizaion or normalization, and missing data cannot affect the model
 - Categories
     - ID3
         - Criterion: maximize **information gain**. For one feature `a`, which has 10 different values, `IG = Entropy(D) - sum(v in range(10): |D_v| / |D| * Entropy(D_v))`
@@ -105,9 +106,12 @@ Model complexity: VC dimension
         - prone to under-fitting
     - Post-pruning
         - For CART, plus the `|tree size|` in SSE
-- **Continuous feature**
-    - To discrete feature via **bi-partition** (e.g., >10 ?)
-    - First sort the value, then choose the **median** of two adjacent value as the condition
+- Features
+    - **Continuous feature**
+        - To discrete feature via **bi-partition** (e.g., >10 ?)
+        - First sort the value, then choose the **median** of two adjacent value as the condition
+    - **Categorical feature**
+        - Decision subset. E.g. X1: ['A', 'B'], then subset: ['A'], ['B'], ['AB']
 - **Missing data**
 - **Split termination criterion**
     - All `y` is same: all samples belong to the same category

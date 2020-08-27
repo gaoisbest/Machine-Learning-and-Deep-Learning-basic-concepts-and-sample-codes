@@ -126,6 +126,9 @@ Model complexity: VC dimension
 #### 1.2.3 Gradient boosted decision trees
 - Principle: **use decision tree to fit the residue**, like Taylor expansion
 - Reduce bias
+- [tutorial 1](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d), [tutorial 2](https://github.com/Freemanzxp/GBDT_Simple_Tutorial)
+- [Gradient boosting performs gradient descent](https://explained.ai/gradient-boosting/descent.html)
+- [Learning rate](https://rcarneva.github.io/understanding-gradient-boosting-part-1.html), i.e., shrinkage: shrinks the contribution of each tree by learning_rate
 
 #### 1.2.4 Tools
 - [LightGBM](https://lightgbm.readthedocs.io/en/latest/), [example](https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-how-to-fine-tune-the-parameters-60347819b7fc)
